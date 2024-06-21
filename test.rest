@@ -1,0 +1,70 @@
+POST http://127.0.0.1:8000/auth/token/
+content-type: application/json
+
+{
+    "email": "ngangireddy@accentiqa.com",
+    "password": "ng2020agroup"
+}
+
+###
+
+GET http://127.0.0.1:8000/api/users/profile/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4OTQ5NTc4LCJpYXQiOjE3MTg5NDIzNzgsImp0aSI6IjAwYTFjMGRmZjljZTQzYjI4M2UwODU4ODNlOGVhZmNjIiwidXNlcl9pZCI6MX0.oW6fytAyenWNcf3p7oGIadQ0ih4FhVBkWWhqiAH7kgQ
+
+###
+
+POST http://127.0.0.1:8000/api/users/usersProfile/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
+
+{
+    "email":"ngnaireddy716777@gmail.com",
+    "password":"ng2020agroup",
+    "first_name":"Naresh",
+    "last_name":"reddy",
+    "phone_number":"1345678931",
+    "is_mla":"0"
+
+}
+
+
+###
+
+PUT http://127.0.0.1:8000/api/users/usersProfile/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
+
+{
+    "email":"ngnaireddy716777@gmail.com",
+    "password":"ng2020agroup",
+    "first_name":"Naresh",
+    "last_name":"reddy",
+    "phone_number":"1345678931",
+    "is_mla":"0"
+
+}
+
+
+###
+
+POST http://127.0.0.1:8000/api/users/pilgrims/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
+
+
+
+[
+    {
+        "pilgrim_name": "naresh",
+        "phone_number": "1232567891",
+        "aadhaar_number": "972348317410",
+        "age": "28"
+    },
+    {
+        "pilgrim_name": "naresh",
+        "phone_number": "1234567891",
+        "aadhaar_number": "92234831310",
+        "age": "28"
+    }
+]

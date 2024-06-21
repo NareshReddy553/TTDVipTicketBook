@@ -1,0 +1,26 @@
+__pycache__
+.vscode
+config/local.py
+.idea
+databasename.db3
+lib
+libclntsh.dylib
+migrations
+
+
+*.*.pyc
+
+*.log
+
+*.pot
+
+*.pyc
+
+*/*/*/__pycache__/
+
+*/*/__pycache__/
+
+*/__pycache__/
+
+# Environments
+
