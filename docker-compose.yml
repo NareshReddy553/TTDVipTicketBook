@@ -1,0 +1,19 @@
+version: '3.12'
+
+services:
+  # database:
+  #   image: mysql:5.7
+  #   ports:
+  #     - '3307:3306'
+  #   environment:
+  #      MYSQL_DATABASE: 'tsapp1_dev'
+  #      MYSQL_USER: 'root'
+  #      MYSQL_PASSWORD: '16e91a0553'
+  #      MYSQL_ROOT_PASSWORD: '16e91a0553'
+  web:
+    build: .
+    container_name: ttd_container
+    command:  >
+      bash -c "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
