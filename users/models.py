@@ -50,11 +50,24 @@ class PilgrimStats(models.Model):
     booked_datetime = models.DateField()
     booked_count = models.IntegerField(default=0)
     vacant_count = models.IntegerField(default=0)
-    pilgrim = models.ForeignKey(Pilgrim, on_delete=models.CASCADE, related_name='stats')
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='stats')
+    pilgrim = models.ForeignKey(Pilgrim, on_delete=models.DO_NOTHING, related_name='stats')
+    user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING, related_name='pilgrimstats')
     created_datetime = models.DateTimeField(auto_now_add=True)
     modified_datetime = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed=False
         db_table = 'pilgrimstats'
+        
+        
+class Blockdate(models.Model):
+    bookdate_id = models.AutoField(primary_key=True)
+    blockdate = models.DateField()
+    user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING, related_name='blockdate')
+    created_datetime = models.DateTimeField(blank=True, null=True)
+    modified_datetime = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'BlockDate'
+        unique_together = ('user', 'blockdate')

@@ -2,7 +2,7 @@ import logging
 import os
 from datetime import date, datetime
 from math import trunc
-from django.db import transaction
+from django.db import IntegrityError, transaction
 
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
@@ -23,8 +23,8 @@ from rest_framework.serializers import IntegerField
 from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import PilgrimStatsFilter
-from users.models import Pilgrim, PilgrimStats, UserProfile
-from users.serializer import PilgrimSerializer, PilgrimstatsSerializer, UsersSerializer
+from users.models import Blockdate, Pilgrim, PilgrimStats, UserProfile
+from users.serializer import  BlockdateSerializer, BlockedDateSerializer, PilgrimSerializer, PilgrimstatsSerializer, UsersSerializer
 
 
 logger = logging.getLogger("tfn.views")
@@ -97,4 +97,46 @@ class PilgrimStatsViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = PilgrimStatsFilter
     
+    def get_queryset(self):
+        queryset = PilgrimStats.objects.filter(
+            user=self.request.user
+        )
+        return queryset
     
+
+
+class BlockDateViewSet(viewsets.ModelViewSet):
+    queryset = Blockdate.objects.all()
+    serializer_class = BlockedDateSerializer
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_class = PilgrimStatsFilter
+    
+    
+    def get_queryset(self):
+        queryset = Blockdate.objects.filter(
+            user=self.request.user
+        )
+        return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        serializer = BlockdateSerializer(data=request.data,context={'request':request})
+        try:
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        
+        except Exception  as e :
+                return Response({"error": e}, status=status.HTTP_400_BAD_REQUEST)    
+        return Response(status=status.HTTP_201_CREATED)
+    
+    @transaction.atomic
+    @action(detail=False, methods=['delete'], url_path='unblock')
+    def unblock_dates(self, request):
+        serializer = BlockdateSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            dates = serializer.validated_data['dates']
+            Blockdate.objects.filter(user=request.user, blockdate__in=dates).delete()
+            return Response({"status": "Dates unblocked."}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

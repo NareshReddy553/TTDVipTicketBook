@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 from config.settings import MLA_QUOTA_BOOK_FOR_DAY,MP_QUOTA_BOOK_FOR_DAY
-from users.models import Pilgrim, UserProfile,PilgrimStats
+from users.models import Blockdate, Pilgrim, UserProfile,PilgrimStats
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.db import transaction
@@ -106,3 +106,47 @@ class PilgrimSerializer(serializers.ModelSerializer):
         model = Pilgrim
         fields = '__all__'
         list_serializer_class = BulkPilgrimsSerializer
+        
+        
+        
+# class BlockMultipleDatesSerializer(serializers.ModelSerializer):
+#     dates = serializers.ListField(
+#         child=serializers.DateField(),
+#         allow_empty=False
+#     )
+    
+#     def create(self, validated_data, *args, **kwargs):
+#         user = self.context["user"]
+#         if validated_data.get("user") and "SecurityAdmin" in user.privileges:
+#             user = validated_data["user"]
+#         user.login_attempts = 0
+#         user.save()
+#         password_hash = get_hashed_password(validated_data["password"])
+#         UsersPasswords.objects.create(
+#             user=user,
+#             password=password_hash,
+#         )
+#         return user
+class BlockdateSerializer(serializers.Serializer):
+    dates = serializers.ListField(child=serializers.DateField())
+
+    def create(self, validated_data):
+        dates = validated_data.pop('dates', [])
+        user = self.context['request'].user  # Assuming user is authenticated
+        
+        # Create Blockdate instances for each date in dates list
+        blockdate_objs = [
+            Blockdate(blockdate=date, user=user)
+            for date in dates
+        ]
+        
+        # Bulk create Blockdate instances
+        blockdates = Blockdate.objects.bulk_create(blockdate_objs)
+
+        return blockdates
+    
+class BlockedDateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blockdate
+        fields = ['user', 'blockdate']
+        read_only_fields = ['user']
