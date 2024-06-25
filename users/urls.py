@@ -6,7 +6,7 @@ from users.viewsets import BlockDateViewSet, PilgrimStatsViewSet, PilgrimsViewSe
 
 router = routers.SimpleRouter()
 router.register(r'usersProfile', UserProfileViewSet)
-router.register(r'upilgrims', PilgrimsViewSet)
+router.register(r'pilgrims', PilgrimsViewSet)
 router.register(r'pilgrimstats', PilgrimStatsViewSet)
 router.register(r'blockdates',BlockDateViewSet)
 
