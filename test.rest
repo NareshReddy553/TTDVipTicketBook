@@ -113,7 +113,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###  Unblock dates
 
-DELETE http://127.0.0.1:8000/api/users/blockdates/unblock/
+PATCH  http://127.0.0.1:8000/api/users/blockdates/unblock/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MjI4NDE4LCJpYXQiOjE3MTkyMjEyMTgsImp0aSI6IjZhYTY4ODI0OTM0OTQ1ZWY5M2ZkZGM2N2VlMzhjNzI1IiwidXNlcl9pZCI6MX0.LWs_oCfnKWRzGpcqn5svGjiE-jnKSy5odz-zDdU4EQI
 

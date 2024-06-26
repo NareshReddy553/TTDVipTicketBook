@@ -132,7 +132,7 @@ class BlockDateViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_201_CREATED)
     
     @transaction.atomic
-    @action(detail=False, methods=['delete'], url_path='unblock')
+    @action(detail=False, methods=['patch'], url_path='unblock')
     def unblock_dates(self, request):
         serializer = BlockdateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
