@@ -37,7 +37,7 @@ class Pilgrim(models.Model):
     aadhaar_number = models.BigIntegerField(unique=True)
     age = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='pilgrims')
-    booked_datetime = models.DateTimeField(auto_now_add=True)
+    booked_datetime = models.DateTimeField()
     created_datetime = models.DateTimeField(auto_now_add=True)
     modified_datetime = models.DateTimeField(auto_now=True)
 

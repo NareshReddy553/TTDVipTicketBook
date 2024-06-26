@@ -50,22 +50,45 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MzgxOTY1LCJpYXQiOjE3MTkzNzQ3NjUsImp0aSI6ImMwZjgxMTg3N2FjYjQ4ZDI5NTk1NTc2YzVmMWVhOGRhIiwidXNlcl9pZCI6MX0.NC5pOAEhlkb3tetLm_3B7VbRxahlqufRSNxUNCjLHw0
 
 
 [
     {
-        "pilgrim_name": "naresh",
+        "pilgrim_name": "gnr",
         "phone_number": "1232567891",
-        "aadhaar_number": "972348317410",
-        "age": "28"
+        "aadhaar_number": "123348311217",
+        "age": "28",
+        "booked_datetime":"2024-06-26 07:31:08"
+
     },
     {
-        "pilgrim_name": "naresh",
-        "phone_number": "1234567891",
-        "aadhaar_number": "92234831310",
-        "age": "28"
+        "pilgrim_name": "gnr",
+        "phone_number": "1234512891",
+        "aadhaar_number": "92232221316",
+        "age": "28",
+        "booked_datetime":"2024-06-26 07:31:08"
+    },
+    {
+        "pilgrim_name": "gnr1",
+        "phone_number": "1234512891",
+        "aadhaar_number": "92232221315",
+        "age": "28",
+        "booked_datetime":"2024-06-27 07:31:08"
+    },
+    {
+        "pilgrim_name": "gnr1",
+        "phone_number": "1234512891",
+        "aadhaar_number": "92232221314",
+        "age": "28",
+        "booked_datetime":"2024-06-27 07:31:08"
+    },
+    {
+        "pilgrim_name": "gnr2",
+        "phone_number": "1234512891",
+        "aadhaar_number": "92232221313",
+        "age": "28",
+        "booked_datetime":"2024-06-26 07:31:08"
     }
 ]
 
@@ -99,3 +122,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
   "dates": ["2024-08-15", "2024-08-16"]
 }
 
+
+
+### Api for Block the dates 
+
+GET http://127.0.0.1:8000/api/users/blockdates/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MzE4NDYwLCJpYXQiOjE3MTkzMTEyNjAsImp0aSI6ImZlMGI4NzM5OGU4ZjRkNmU4OTg5ZjlkMjYzMWRjOGU0IiwidXNlcl9pZCI6MX0.WcVNcGWjM9mwBQyg9jju_UlsBGMCetRhprlPwb4ALpc

@@ -72,30 +72,34 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
         stats_dict = {}
         for pilgrim in created_pilgrims:
             key = (pilgrim.booked_datetime.date(), user.pk)
-            if key not in stats_dict:
-                stats_dict[key] = {
+            pilgrimstats_qs=PilgrimStats.objects.filter(booked_datetime=pilgrim.booked_datetime.date(),user=user).first()
+            if pilgrimstats_qs is not None:
+                if key not in stats_dict:
+                    stats_dict[key] = {
+                        'booked_count': pilgrimstats_qs.booked_count,
+                        'vacant_count': pilgrimstats_qs.vacant_count
+                    }
+            else:
+                if key not in stats_dict:
+                    stats_dict[key] = {
                     'booked_count': 0,
                     'vacant_count': MLA_QUOTA_BOOK_FOR_DAY if user.is_mla else MP_QUOTA_BOOK_FOR_DAY
                 }
+                
+            
+            
 
             stats_dict[key]['booked_count'] += 1
             stats_dict[key]['vacant_count'] -= 1
 
         for key, value in stats_dict.items():
             booked_date, user_id = key
-
-            # Update or create Pilgrimstats
-            stats, created = PilgrimStats.objects.get_or_create(
+            stats, created = PilgrimStats.objects.update_or_create(
                 booked_datetime=booked_date,
                 user=user,
-                defaults={'booked_count': value['booked_count'], 'vacant_count': MLA_QUOTA_BOOK_FOR_DAY if user.is_mla else MP_QUOTA_BOOK_FOR_DAY - value['booked_count']}
-            )
-            if not created:
-                stats.booked_count += value['booked_count']
-                stats.vacant_count -= value['booked_count']
-                if stats.vacant_count < 0:
-                    raise ValueError("Vacant count cannot be negative.")
-                stats.save()
+                defaults={'booked_count': value['booked_count'], 'vacant_count': value['vacant_count']},
+                )
+                
 
         return created_pilgrims
     
@@ -108,25 +112,7 @@ class PilgrimSerializer(serializers.ModelSerializer):
         list_serializer_class = BulkPilgrimsSerializer
         
         
-        
-# class BlockMultipleDatesSerializer(serializers.ModelSerializer):
-#     dates = serializers.ListField(
-#         child=serializers.DateField(),
-#         allow_empty=False
-#     )
-    
-#     def create(self, validated_data, *args, **kwargs):
-#         user = self.context["user"]
-#         if validated_data.get("user") and "SecurityAdmin" in user.privileges:
-#             user = validated_data["user"]
-#         user.login_attempts = 0
-#         user.save()
-#         password_hash = get_hashed_password(validated_data["password"])
-#         UsersPasswords.objects.create(
-#             user=user,
-#             password=password_hash,
-#         )
-#         return user
+
 class BlockdateSerializer(serializers.Serializer):
     dates = serializers.ListField(child=serializers.DateField())
 
