@@ -16,16 +16,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/usersProfile/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NDcyMDY2LCJpYXQiOjE3MTk0NjQ4NjYsImp0aSI6Ijk5YWNmNzNmNzFiMzRkNTk4M2QxZTY1NWQ4ZWZmNDcyIiwidXNlcl9pZCI6MX0.SkPBsBKbFAMJ6mTY_q8IrBToeErbk_SZjcFgtUZHono
 
 {
-    "email":"ngnaireddy716777@gmail.com",
-    "password":"ng2020agroup",
-    "first_name":"Naresh",
-    "last_name":"reddy",
-    "phone_number":"1345678931",
-    "is_mla":"0"
-
+    "email":"manasa.gangumolu@aware247.com",
+    "password":"Mr@vi777*9",
+    "first_name":"G",
+    "last_name":"Manasa",
+    "phone_number":"9912277789",
+    "is_mla":"1"
 }
 
 
@@ -97,8 +96,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 GET http://127.0.0.1:8000/api/users/pilgrimstats/?month=6&year=2024
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MjI4NDE4LCJpYXQiOjE3MTkyMjEyMTgsImp0aSI6IjZhYTY4ODI0OTM0OTQ1ZWY5M2ZkZGM2N2VlMzhjNzI1IiwidXNlcl9pZCI6MX0.LWs_oCfnKWRzGpcqn5svGjiE-jnKSy5odz-zDdU4EQI
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NDcxODA5LCJpYXQiOjE3MTk0NjQ2MDksImp0aSI6IjYyNTBkMTE1YTNiNDRmOWRiNmVhMGZhZDFlODA5NWI1IiwidXNlcl9pZCI6MX0.9lcIixJ899CWD1WZiDioTzCP0q1xy6aMsgLKturkS7I
 
 ### Api for Block the dates 
 

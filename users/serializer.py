@@ -21,7 +21,7 @@ class UsersSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
     first_name = serializers.CharField(required=True, max_length=100)
     last_name = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=100)
-    phone_number = serializers.IntegerField(required=False, allow_null=True)
+    phone_number = serializers.CharField(required=False, allow_null=True)
     created_datetime = serializers.DateTimeField(required=False, allow_null=True)
     modified_datetime = serializers.DateTimeField(required=False, allow_null=True)
     
@@ -54,13 +54,23 @@ class UsersSerializer(serializers.ModelSerializer):
         
         
 class PilgrimstatsSerializer(serializers.ModelSerializer):
-    
+    is_blocked=serializers.SerializerMethodField()
+            
     
     
     class Meta:
         model = PilgrimStats
-        exclude = ['user']
+        fields=["pilgrimstat_id","booked_datetime","booked_count","vacant_count","is_blocked"]
         
+    def get_is_blocked(self, obj):
+
+        # Filter the blocked dates
+        blocked_qs = Blockdate.objects.filter(user=obj.user,blockdate=obj.booked_datetime)
+        
+        # Serialize if there are results
+        if blocked_qs.exists():
+           return True
+        return False
         
 class BulkPilgrimsSerializer(serializers.ListSerializer):
 

@@ -16,7 +16,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(_("password"), max_length=128)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, blank=True, null=True)
-    phone_number = models.IntegerField(blank=True, null=True)
+    phone_number = models.CharField(max_length=10,blank=True, null=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -33,8 +33,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 class Pilgrim(models.Model):
     pilgrim_id = models.AutoField(primary_key=True)
     pilgrim_name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    aadhaar_number = models.BigIntegerField(unique=True)
+    phone_number = models.CharField(max_length=10, blank=True, null=True)
+    aadhaar_number = models.CharField(max_length=12,unique=True)
     age = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='pilgrims')
     booked_datetime = models.DateTimeField()
