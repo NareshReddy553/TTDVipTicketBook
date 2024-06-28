@@ -49,47 +49,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MzgxOTY1LCJpYXQiOjE3MTkzNzQ3NjUsImp0aSI6ImMwZjgxMTg3N2FjYjQ4ZDI5NTk1NTc2YzVmMWVhOGRhIiwidXNlcl9pZCI6MX0.NC5pOAEhlkb3tetLm_3B7VbRxahlqufRSNxUNCjLHw0
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
 
 [
     {
-        "pilgrim_name": "gnr",
-        "phone_number": "1232567891",
-        "aadhaar_number": "123348311217",
+        "pilgrim_name": "gnr123",
+        "phone_number": "1232578931",
+        "aadhaar_number": "12348311213",
         "age": "28",
         "booked_datetime":"2024-06-26 07:31:08"
 
-    },
-    {
-        "pilgrim_name": "gnr",
-        "phone_number": "1234512891",
-        "aadhaar_number": "92232221316",
-        "age": "28",
-        "booked_datetime":"2024-06-26 07:31:08"
-    },
-    {
-        "pilgrim_name": "gnr1",
-        "phone_number": "1234512891",
-        "aadhaar_number": "92232221315",
-        "age": "28",
-        "booked_datetime":"2024-06-27 07:31:08"
-    },
-    {
-        "pilgrim_name": "gnr1",
-        "phone_number": "1234512891",
-        "aadhaar_number": "92232221314",
-        "age": "28",
-        "booked_datetime":"2024-06-27 07:31:08"
-    },
-    {
-        "pilgrim_name": "gnr2",
-        "phone_number": "1234512891",
-        "aadhaar_number": "92232221313",
-        "age": "28",
-        "booked_datetime":"2024-06-26 07:31:08"
     }
 ]
+
+
+### Api to get the pilgrim
+
+GET http://127.0.0.1:8000/api/users/pilgrims/?month=7
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
+
+
 
 
 ###
@@ -97,6 +77,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 GET http://127.0.0.1:8000/api/users/pilgrimstats/?month=6&year=2024
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NDcxODA5LCJpYXQiOjE3MTk0NjQ2MDksImp0aSI6IjYyNTBkMTE1YTNiNDRmOWRiNmVhMGZhZDFlODA5NWI1IiwidXNlcl9pZCI6MX0.9lcIixJ899CWD1WZiDioTzCP0q1xy6aMsgLKturkS7I
+
 
 ### Api for Block the dates 
 

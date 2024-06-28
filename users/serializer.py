@@ -115,10 +115,9 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
     
 
 class PilgrimSerializer(serializers.ModelSerializer):
-    user=UsersSerializer(read_only=True)
     class Meta:
         model = Pilgrim
-        fields = '__all__'
+        fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','age','booked_datetime']
         list_serializer_class = BulkPilgrimsSerializer
         
         

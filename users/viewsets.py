@@ -22,7 +22,7 @@ from rest_framework.response import Response
 from rest_framework.serializers import IntegerField
 from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
-from users.filters import PilgrimStatsFilter
+from users.filters import PilgrimFilter, PilgrimStatsFilter
 from users.models import Blockdate, Pilgrim, PilgrimStats, UserProfile
 from users.serializer import  BlockdateSerializer, BlockedDateSerializer, PilgrimSerializer, PilgrimstatsSerializer, UsersSerializer
 
@@ -74,7 +74,14 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Pilgrim.objects.all()
     serializer_class = PilgrimSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = PilgrimFilter
     
+    # def get_queryset(self):
+    #     queryset = Pilgrim.objects.filter(
+    #         user=self.request.user
+    #     )
+    #     return queryset
     
     @transaction.atomic
     def create(self, request, *args, **kwargs):
