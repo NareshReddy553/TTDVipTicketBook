@@ -62,6 +62,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
     }
 ]
 
+###
+Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
+
+[
+    {        "pilgrim_id":"78",
+            "pilgrim_name": "gnr123",
+            "phone_number": "1232578931",
+            "aadhaar_number": "12348311213",
+            "age": "29",
+            "booked_datetime":"2024-06-26 07:31:08"
+
+    },
+    {        "pilgrim_id":"79",
+            "pilgrim_name": "manasa lakshmi",
+            "phone_number": "1232578931",
+            "aadhaar_number": "12121255",
+            "age": "24"
+
+    }
+]
+
 
 ### Api to get the pilgrim
 GET http://127.0.0.1:8000/api/users/pilgrims/?booked_datetime=2024-06-09

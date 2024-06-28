@@ -93,6 +93,49 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
             return Response( status=status.HTTP_201_CREATED, headers=headers)
         except APIException as e:
             return Response({"message": "Failed to Book", "error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+    @action(detail=False, methods=['put','patch'],url_path='pilgrim_update')
+    def pilgrim_bulk_update(self, request, *args, **kwargs):
+        if isinstance(request.data, list):
+            return self.bulk_update(request, *args, **kwargs)
+        else:
+            return super().update(request, *args, **kwargs)
+        
+        
+
+    def bulk_update(self, request, *args, **kwargs):
+        partial = request.method=='PATCH'
+        data = request.data
+        response_data = []
+        try:
+            with transaction.atomic():
+                for item in data:
+                    instance = self.get_object_from_data(item)
+                    serializer = self.get_serializer(instance, data=item, partial=partial)
+                    serializer.is_valid(raise_exception=True)
+                    self.perform_update(serializer)
+                    response_data.append(serializer.data)
+        except Exception as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(response_data, status=status.HTTP_200_OK)
+
+    def get_object_from_data(self, data):
+        # Assumes 'id' field is present in data to fetch the object
+        obj_id = data.get('pilgrim_id')
+        if not obj_id:
+            raise ValueError("ID field is required for bulk update")
+        try:
+            return self.queryset.get(pk=obj_id)
+        except Pilgrim.DoesNotExist:
+            raise ValueError(f"Object with ID {obj_id} does not exist")
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
             
         
         
