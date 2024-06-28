@@ -64,8 +64,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ### Api to get the pilgrim
-
-GET http://127.0.0.1:8000/api/users/pilgrims/?month=7
+GET http://127.0.0.1:8000/api/users/pilgrims/?booked_datetime=2024-06-09
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
 

@@ -77,11 +77,11 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = PilgrimFilter
     
-    # def get_queryset(self):
-    #     queryset = Pilgrim.objects.filter(
-    #         user=self.request.user
-    #     )
-    #     return queryset
+    def get_queryset(self):
+        queryset = Pilgrim.objects.filter(
+            user=self.request.user
+        )
+        return queryset
     
     @transaction.atomic
     def create(self, request, *args, **kwargs):

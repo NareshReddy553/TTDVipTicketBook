@@ -13,7 +13,7 @@ class PilgrimStatsFilter(django_filters.FilterSet):
         
         
 class PilgrimFilter(django_filters.FilterSet):
-    booked_datetime = django_filters.DateFilter(field_name='booked_datetime')
+    booked_datetime = django_filters.DateFilter(field_name='booked_datetime',lookup_expr='date')
     month = django_filters.NumberFilter(field_name='booked_datetime__month')
     year = django_filters.NumberFilter(field_name='booked_datetime__year')
     
