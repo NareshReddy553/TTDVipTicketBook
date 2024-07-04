@@ -1,4 +1,4 @@
-POST http://127.0.0.1:8000/auth/token/
+POST http://13.201.33.169:8000/auth/token/
 content-type: application/json
 
 {
@@ -8,15 +8,20 @@ content-type: application/json
 
 ###
 
-GET http://127.0.0.1:8000/api/users/profile/
+GET http://13.201.33.169:8000/api/users/profile/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4OTQ5NTc4LCJpYXQiOjE3MTg5NDIzNzgsImp0aSI6IjAwYTFjMGRmZjljZTQzYjI4M2UwODU4ODNlOGVhZmNjIiwidXNlcl9pZCI6MX0.oW6fytAyenWNcf3p7oGIadQ0ih4FhVBkWWhqiAH7kgQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDA1NDY4LCJpYXQiOjE3MTk5OTgyNjgsImp0aSI6ImNmZTczMWMwMzU3ODQ2ZGI4YjBmYmFjZmMyNzAyZWE1IiwidXNlcl9pZCI6MX0.2JUs_oOWsGK5LZ4o7HnuAfngxqh3dK9wUi9_UXymn2Q
+
+###
+GET http://127.0.0.1:8000/api/users/usersProfile/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5OTk1NzA1LCJpYXQiOjE3MTk5ODg1MDUsImp0aSI6IjFjYjY0ODc2MjI2MjQxNjI4NWU5OGZlNDkwMjljZWU5IiwidXNlcl9pZCI6MX0.VHmlAPVeQZeVGUt-3ng3vhq5MCCF4sarOytxwipPQqY
 
 ###
 
 POST http://127.0.0.1:8000/api/users/usersProfile/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NDcyMDY2LCJpYXQiOjE3MTk0NjQ4NjYsImp0aSI6Ijk5YWNmNzNmNzFiMzRkNTk4M2QxZTY1NWQ4ZWZmNDcyIiwidXNlcl9pZCI6MX0.SkPBsBKbFAMJ6mTY_q8IrBToeErbk_SZjcFgtUZHono
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5OTk1NzA1LCJpYXQiOjE3MTk5ODg1MDUsImp0aSI6IjFjYjY0ODc2MjI2MjQxNjI4NWU5OGZlNDkwMjljZWU5IiwidXNlcl9pZCI6MX0.VHmlAPVeQZeVGUt-3ng3vhq5MCCF4sarOytxwipPQqY
 
 {
     "email":"manasa.gangumolu@aware247.com",
@@ -130,3 +135,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 GET http://127.0.0.1:8000/api/users/blockdates/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MzE4NDYwLCJpYXQiOjE3MTkzMTEyNjAsImp0aSI6ImZlMGI4NzM5OGU4ZjRkNmU4OTg5ZjlkMjYzMWRjOGU0IiwidXNlcl9pZCI6MX0.WcVNcGWjM9mwBQyg9jju_UlsBGMCetRhprlPwb4ALpc
+
+
+###  possword reset
+POST http://127.0.0.1:8000/api/users/usersProfile/1/reset_password/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDg4NjYwLCJpYXQiOjE3MjAwODE0NjAsImp0aSI6IjI3YmE4NDk0OWVjMTRjODI5OGYzMTdiN2ExM2NiMmQ1IiwidXNlcl9pZCI6MX0.AZc7pBqfxMcQ1GOQ4g-m4Uh8DokQOFXI1w9M4cs264U
+
+{
+    "new_password":"Gnr@7167",
+    "confirm_password":"Gnr@7167"
+}

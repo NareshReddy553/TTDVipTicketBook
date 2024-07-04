@@ -17,6 +17,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     phone_number = models.CharField(max_length=10,blank=True, null=True)
+    constituency = models.CharField(max_length=100, blank=True, null=True)
+    gender = models.CharField(max_length=1, blank=True, null=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -40,6 +42,8 @@ class Pilgrim(models.Model):
     booked_datetime = models.DateTimeField()
     created_datetime = models.DateTimeField(auto_now_add=True)
     modified_datetime = models.DateTimeField(auto_now=True)
+    gender = models.CharField(max_length=1, blank=True, null=True)
+    seva = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed=False

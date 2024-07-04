@@ -7,7 +7,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.db import transaction
 
-from users.utils import get_hashed_password
 
 
 class UsersProfileSerializer(serializers.ModelSerializer):    
@@ -28,7 +27,7 @@ class UsersSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserProfile
-        fields = "__all__"
+        exclude=['groups','user_permissions','is_staff',]
     
     @transaction.atomic
     def create(self, validated_data,*args, **kwargs):
@@ -145,3 +144,18 @@ class BlockedDateSerializer(serializers.ModelSerializer):
         model = Blockdate
         fields = ['user', 'blockdate']
         read_only_fields = ['user']
+
+
+class PasswordResetSerializer(serializers.Serializer):
+    new_password = serializers.CharField(write_only=True, required=True, min_length=8)
+    confirm_password = serializers.CharField(write_only=True, required=True, min_length=8)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+        return attrs
+
+    def save(self, user):
+        user.set_password(self.validated_data['new_password'])
+        user.save()
+        return user

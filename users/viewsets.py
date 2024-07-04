@@ -13,7 +13,6 @@ from django.db.models import Case, Count, Q, Value, When
 from django.db.models.expressions import F, OuterRef, Subquery
 from django.db.models.functions import Concat
 from django.db.transaction import atomic
-from django.http.response import JsonResponse
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
@@ -67,6 +66,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         
     def partial_update(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
     
     
 
