@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "email": "ngangireddy@accentiqa.com",
-    "password": "ng2020agroup"
+    "password": "Gnr@7167"
 }
 
 ###
@@ -35,17 +35,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 
-PUT http://127.0.0.1:8000/api/users/usersProfile/
+PATCH http://127.0.0.1:8000/api/users/usersProfile/1/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE4ODg3NzIxLCJpYXQiOjE3MTg4ODA1MjEsImp0aSI6ImRkZTQ2MGM0MmJlOTRjZTI5NDlkNTI4YmI0MjU5MGY3IiwidXNlcl9pZCI6MX0.C3NXmgHUnNQh3l44Gte0WbI_BylzcFjfw4z4rnLieUA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDg4NjYwLCJpYXQiOjE3MjAwODE0NjAsImp0aSI6IjI3YmE4NDk0OWVjMTRjODI5OGYzMTdiN2ExM2NiMmQ1IiwidXNlcl9pZCI6MX0.AZc7pBqfxMcQ1GOQ4g-m4Uh8DokQOFXI1w9M4cs264U
 
 {
     "email":"ngnaireddy716777@gmail.com",
-    "password":"ng2020agroup",
     "first_name":"Naresh",
     "last_name":"reddy",
     "phone_number":"1345678931",
-    "is_mla":"0"
+    "is_mla":"0",
+    "gender":"male"
 
 }
 

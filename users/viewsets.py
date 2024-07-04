@@ -19,6 +19,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.serializers import IntegerField
+from rest_framework import serializers
 from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import PilgrimFilter, PilgrimStatsFilter
@@ -51,21 +52,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
             return Response({"message": "User created successfully"}, status=status.HTTP_201_CREATED, headers=headers)
         except APIException as e:
             return Response({"message": "Failed to create user", "error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        try:
-            serializer.is_valid(raise_exception=True)
-            self.perform_update(serializer)
-            return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
-        except APIException as e:
-            return Response({"message": "Failed to update user", "error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        
-        
-    def partial_update(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+ 
     
     
     

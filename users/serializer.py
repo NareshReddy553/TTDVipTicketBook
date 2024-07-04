@@ -13,7 +13,7 @@ class UsersProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserProfile
-        fields = ['user_id','is_superuser','is_mla','email']
+        fields = ['user_id','is_superuser','is_mla','email','constituency','email','first_name','last_name']
 
 class UsersSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
@@ -38,15 +38,7 @@ class UsersSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     
-    @transaction.atomic
-    def update(self, instance, validated_data,*args, **kwargs):
-        password = validated_data.pop('password', None)
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        if password is not None:
-            instance.set_password(password)
-        instance.save()
-        return instance
+    
     
 
 
