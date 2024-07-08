@@ -21,7 +21,7 @@ class UserProfileView(APIView):
     
     
 class PasswordResetView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')

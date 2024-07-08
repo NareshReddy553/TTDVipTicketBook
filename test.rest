@@ -2,8 +2,8 @@ POST http://13.201.33.169:8000/auth/token/
 content-type: application/json
 
 {
-    "email": "ngangireddy@accentiqa.com",
-    "password": "Gnr@7167"
+    "email": "admin@accentiqa.com",
+    "password": "admin"
 }
 
 ###
@@ -12,10 +12,10 @@ GET http://13.201.33.169:8000/api/users/profile/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDA1NDY4LCJpYXQiOjE3MTk5OTgyNjgsImp0aSI6ImNmZTczMWMwMzU3ODQ2ZGI4YjBmYmFjZmMyNzAyZWE1IiwidXNlcl9pZCI6MX0.2JUs_oOWsGK5LZ4o7HnuAfngxqh3dK9wUi9_UXymn2Q
 
-###
-GET http://127.0.0.1:8000/api/users/usersProfile/
+### api for delete user
+DELETE http://127.0.0.1:8000/api/users/usersProfile/16/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5OTk1NzA1LCJpYXQiOjE3MTk5ODg1MDUsImp0aSI6IjFjYjY0ODc2MjI2MjQxNjI4NWU5OGZlNDkwMjljZWU5IiwidXNlcl9pZCI6MX0.VHmlAPVeQZeVGUt-3ng3vhq5MCCF4sarOytxwipPQqY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDk2MTY3LCJpYXQiOjE3MjAwODg5NjcsImp0aSI6IjQxZDIzNGVlMmVkODQ3NjRhMmE5NGU2OGYzMzI4MDQyIiwidXNlcl9pZCI6MX0.OFAcvpOsfPM9d_81pcMFDyumgRg6qxEtzpDkdGMKGIs
 
 ###
 
@@ -37,10 +37,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 PATCH http://127.0.0.1:8000/api/users/usersProfile/1/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDg4NjYwLCJpYXQiOjE3MjAwODE0NjAsImp0aSI6IjI3YmE4NDk0OWVjMTRjODI5OGYzMTdiN2ExM2NiMmQ1IiwidXNlcl9pZCI6MX0.AZc7pBqfxMcQ1GOQ4g-m4Uh8DokQOFXI1w9M4cs264U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDk2MTY3LCJpYXQiOjE3MjAwODg5NjcsImp0aSI6IjQxZDIzNGVlMmVkODQ3NjRhMmE5NGU2OGYzMzI4MDQyIiwidXNlcl9pZCI6MX0.OFAcvpOsfPM9d_81pcMFDyumgRg6qxEtzpDkdGMKGIs
 
 {
-    "email":"ngnaireddy716777@gmail.com",
+    "email":"ngnaireddy@accentiqa.com",
     "first_name":"Naresh",
     "last_name":"reddy",
     "phone_number":"1345678931",
