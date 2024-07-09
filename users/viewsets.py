@@ -123,6 +123,24 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         kwargs['partial'] = True
         return self.update(request, *args, **kwargs)
+    
+    @transaction.atomic
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        booked_date = instance.booked_datetime.date()
+        pilgrimstanst=PilgrimStats.objects.filter(user=instance.user,booked_datetime=booked_date).first()
+        if pilgrimstanst:
+            pilgrimstanst.booked_count -=1
+            pilgrimstanst.vacant_count +=1
+            pilgrimstanst.save()
+                
+        self.perform_destroy(instance)
+        
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
             
         
         

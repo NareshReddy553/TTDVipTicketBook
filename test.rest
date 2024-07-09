@@ -13,7 +13,7 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDA1NDY4LCJpYXQiOjE3MTk5OTgyNjgsImp0aSI6ImNmZTczMWMwMzU3ODQ2ZGI4YjBmYmFjZmMyNzAyZWE1IiwidXNlcl9pZCI6MX0.2JUs_oOWsGK5LZ4o7HnuAfngxqh3dK9wUi9_UXymn2Q
 
 ### api for delete user
-DELETE http://127.0.0.1:8000/api/users/usersProfile/16/
+DELETE http://127.0.0.1:8000/api/users/usersProfile/17/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDk2MTY3LCJpYXQiOjE3MjAwODg5NjcsImp0aSI6IjQxZDIzNGVlMmVkODQ3NjRhMmE5NGU2OGYzMzI4MDQyIiwidXNlcl9pZCI6MX0.OFAcvpOsfPM9d_81pcMFDyumgRg6qxEtzpDkdGMKGIs
 
@@ -54,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTAwNTg2LCJpYXQiOjE3MjA0OTMzODYsImp0aSI6ImVjOGE0YzEyYzQ3MzQyYjVhN2RjNTcyNzIyMDQ0YWYzIiwidXNlcl9pZCI6MjF9.Y7eHRfe8YrA5BIhVHG_85t8EL9aBNcw1ZDoldutiJQY
 
 [
     {
@@ -70,7 +70,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTAwNTg2LCJpYXQiOjE3MjA0OTMzODYsImp0aSI6ImVjOGE0YzEyYzQ3MzQyYjVhN2RjNTcyNzIyMDQ0YWYzIiwidXNlcl9pZCI6MjF9.Y7eHRfe8YrA5BIhVHG_85t8EL9aBNcw1ZDoldutiJQY
 
 [
     {        "pilgrim_id":"78",
@@ -92,10 +92,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ### Api to get the pilgrim
-GET http://127.0.0.1:8000/api/users/pilgrims/?booked_datetime=2024-06-09
+GET http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NjM1NTEzLCJpYXQiOjE3MTk1NDkxMTMsImp0aSI6IjlmNTc3ZDEwNjRiMjQ0ZTRhY2U2OWNkODdmYTczYzE4IiwidXNlcl9pZCI6MX0.g687lxNqbpsvEX39y4F63kAN6oih5UOoPOPqSFafFKg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTExOTc3LCJpYXQiOjE3MjA1MDQ3NzcsImp0aSI6IjI5ODJlNjU2NzkwZjRlZTE5MmIzYzU0OTE2NDI5ZDQ5IiwidXNlcl9pZCI6MjF9._KU6oDWJRd0mzch3MnJ-rGUVeYDO98HlBfAiBzGGx0w
 
+
+### Api to delete the pilgrim
+DELETE http://127.0.0.1:8000/api/users/pilgrims/110/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTExOTc3LCJpYXQiOjE3MjA1MDQ3NzcsImp0aSI6IjI5ODJlNjU2NzkwZjRlZTE5MmIzYzU0OTE2NDI5ZDQ5IiwidXNlcl9pZCI6MjF9._KU6oDWJRd0mzch3MnJ-rGUVeYDO98HlBfAiBzGGx0w
 
 
 

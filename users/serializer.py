@@ -108,10 +108,10 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
 class PilgrimSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pilgrim
-        fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','age','booked_datetime']
+        fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','age','booked_datetime','seva','gender']
         list_serializer_class = BulkPilgrimsSerializer
         
-        
+\
 
 class BlockdateSerializer(serializers.Serializer):
     dates = serializers.ListField(child=serializers.DateField())
