@@ -1,13 +1,20 @@
+from io import BytesIO
+from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.decorators import api_view
+from config import settings
 
 from users.models import UserProfile
 from users.serializer import  PasswordResetSerializer, UsersProfileSerializer
-from users.utils import get_weekend_dates_for_month, get_weekend_dates_for_year
-
+from users.utils import get_weekend_dates_for_month, get_weekend_dates_for_year, render_to_pdf
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+import os
+from django.template.loader import get_template
 
 
 
@@ -63,3 +70,28 @@ def Blockdates_on_month_or_year(request):
     weekends = [date.isoformat() for date in weekends]  # Convert to string format
     
     return Response({"weekend_dates": weekends}, status=status.HTTP_200_OK)
+
+
+
+# @api_view(['GET'])
+def generate_vip_darshan_letter(request):
+    context = {
+    'recipient_name': 'Sri Dharma Reddy garu',
+    'date': '24.11.2021',
+    'pilgrims': [
+        {'name': 'N. Ramarao', 'age': '50', 'address': 'R/o Rotarinagar, Khammam Dist. Telangana State.', 'aadhar': '373996575638', 'mobile': '9951152390'},
+        {'name': 'P. Anjaneyulu', 'age': '45', 'address': '', 'aadhar': '203825120965', 'mobile': ''},
+        {'name': 'B. Vikram Kumar', 'age': '40', 'address': '', 'aadhar': '535685379166', 'mobile': ''},
+    ],
+    'accommodation_date': '01.12.2021',
+    'darshan_date': '02.12.2021',
+    'email': '',
+    'contact': '9951152390'
+}
+   
+    pdf = render_to_pdf('vip_darshan_letter.html', context)
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'inline; filename="vip_darshan_letter.pdf"'
+        return response
+    return HttpResponse("Error generating PDF", status=400)

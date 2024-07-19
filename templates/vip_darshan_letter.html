@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif; /* Change font family */
+
+        font-size: 14px; /* Change font size */
+      }
+      .letter-content {
+        margin: 10px;
+      }
+      .emblem {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .date {
+        text-align: right;
+      }
+
+      .salutation {
+        margin-top: 20px;
+      }
+      .address {
+        margin-top: 40px;
+      }
+      .signature-section {
+        text-align: right;
+        position: relative;
+      }
+      .signature {
+        display: inline-block;
+        text-align: center;
+      }
+      .signature p {
+        margin: 0;
+      }
+
+      .content {
+        margin-left: 60px;
+      }
+      .wish {
+        margin-left: 30%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border-radius: 8px; /* Rounded corners for the table */
+        overflow: hidden; /* Ensures the border-radius applies to the table cells */
+      }
+      table th,
+      table td {
+        border: 1px solid #322e2e !important; /* Pure black color for table borders and higher specificity */
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="letter-content">
+      <!-- Emblem -->
+      <div class="emblem">
+        <img
+          src="C:\Users\ADMIN\Desktop\myproject\TTDVipBook\staticfiles\Emblem_of_Andhra_Pradesh.png"
+          alt="Emblem"
+          class="img-fluid"
+          style="width: 100px; height: auto"
+        />
+      </div>
+      <!-- Date -->
+      <div class="date">
+        <p style="font-weight: 600">DATE:19.07.2024</p>
+      </div>
+      <!-- Salutation -->
+      <div class="salutation">
+        <p style="font-weight: 600">Dear Shri Naresh Reddy,</p>
+      </div>
+      <!-- Paragraph -->
+      <div class="paragraph">
+        <p style="text-indent: 20px; font-size: 18px">
+          I am writing to inform you that the following pilgrims will be
+          visiting Tirumala. In this regard, I kindly request you to provide
+          accommodation at Tirumala on the 22nd and 23rd of July 2024 as per the
+          usual terms and conditions.
+        </p>
+      </div>
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sl. No.</th>
+              <th>Name of the Pilgrim</th>
+              <th>Aadhar Number</th>
+              <th>Mobile Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Gangireddy Naresh Reddy</td>
+              <td>972348587410</td>
+              <td>9723485874</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Gangireddy Simhadri</td>
+              <td>972348587410</td>
+              <td>9723485874</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Content -->
+      <div class="content">
+        <p style="margin-top: 20px">
+          Date of Accommodation:- {{ accommodation_date }}
+        </p>
+        <p>Date of Break Darshan:- {{ darshan_date }}</p>
+        <p>Email Address:- {{ email }}</p>
+        <p>Contact No.:- {{ contact }}</p>
+      </div>
+      <!-- wish -->
+      <div class="wish"><p>With regards,</p></div>
+      <!-- Addresses -->
+      <div
+        class="row address"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        "
+      >
+        <div class="col-md-6" style="font-weight: 600; flex: 1">
+          <p style="margin-block-start: 0px; margin-block-end: 0px">To</p>
+          <p style="margin-block-start: 0px; margin-block-end: 0px">
+            Sri J.Syamala rao,IAS
+          </p>
+
+          <p style="margin-block-start: 0px; margin-block-end: 0px">
+            Additional Executive Officer,
+          </p>
+
+          <p style="margin-block-start: 0px; margin-block-end: 0px">
+            Tirumala Tirupati Devasthanams,
+          </p>
+
+          <p style="margin-block-start: 0px; margin-block-end: 0px">
+            Tirupathi.
+          </p>
+        </div>
+        <div class="col-md-6 text-right" style="flex: 1">
+          <div class="signature-section">
+            <div class="signature">
+              <p>Your sincerely,</p>
+
+              <p style="margin-top: 30px"><strong>(G. Naresh)</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
