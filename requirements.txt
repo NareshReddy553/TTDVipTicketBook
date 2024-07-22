@@ -9,4 +9,5 @@ mysqlclient==2.2.4
 PyJWT==2.8.0
 sqlparse==0.5.0
 tzdata==2024.1
-xhtml2pdf==0.2.16
+xhtml2pdf
+python-bidi==0.4.2

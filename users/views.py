@@ -74,7 +74,7 @@ def Blockdates_on_month_or_year(request):
 
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def generate_vip_darshan_letter(request):
     data=request.data
