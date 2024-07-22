@@ -1,16 +1,17 @@
 from io import BytesIO
+from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
 from config import settings
 
-from users.models import UserProfile
+from users.models import Pilgrim, UserProfile
 from users.serializer import  PasswordResetSerializer, UsersProfileSerializer
-from users.utils import get_weekend_dates_for_month, get_weekend_dates_for_year, render_to_pdf
+from users.utils import get_weekend_dates_for_month, get_weekend_dates_for_year, link_callback, render_to_pdf
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 import os
@@ -73,25 +74,34 @@ def Blockdates_on_month_or_year(request):
 
 
 
-# @api_view(['GET'])
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def generate_vip_darshan_letter(request):
-    context = {
-    'recipient_name': 'Sri Dharma Reddy garu',
-    'date': '24.11.2021',
-    'pilgrims': [
-        {'name': 'N. Ramarao', 'age': '50', 'address': 'R/o Rotarinagar, Khammam Dist. Telangana State.', 'aadhar': '373996575638', 'mobile': '9951152390'},
-        {'name': 'P. Anjaneyulu', 'age': '45', 'address': '', 'aadhar': '203825120965', 'mobile': ''},
-        {'name': 'B. Vikram Kumar', 'age': '40', 'address': '', 'aadhar': '535685379166', 'mobile': ''},
-    ],
-    'accommodation_date': '01.12.2021',
-    'darshan_date': '02.12.2021',
-    'email': '',
-    'contact': '9951152390'
-}
+    data=request.data
+    pilgrims_qs=Pilgrim.objects.filter(user=request.user,pilgrim_id__in=data.get('pilgrim_id'))
+    if pilgrims_qs:
+        accommodation_date = datetime.strptime(data.get('accommodation_date'), "%Y-%m-%d").date() if data.get('accommodation_date') else None
+        darshan_date = datetime.strptime(data.get('darshan_date'), "%Y-%m-%d").date() if data.get('darshan_date') else None
+    
+        context = {
+            'date': datetime.now().strftime("%d.%m.%Y"),
+            'pilgrims': pilgrims_qs,
+            'accommodation_date':accommodation_date,
+            'darshan_date':darshan_date,
+            'email': data.get('email'),
+            'contact': data.get('contact')
+        }
    
-    pdf = render_to_pdf('vip_darshan_letter.html', context)
-    if pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'inline; filename="vip_darshan_letter.pdf"'
-        return response
-    return HttpResponse("Error generating PDF", status=400)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="vip_darshan_letter.pdf"'
+    # find the template and render it.
+    template = get_template('vip_darshan_letter.html')
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response,link_callback=link_callback)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

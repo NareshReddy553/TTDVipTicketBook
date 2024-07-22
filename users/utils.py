@@ -48,3 +48,38 @@ def render_to_pdf(template_src, context_dict={}):
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
+
+
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+from django.utils._os import safe_join
+from django.core.exceptions import SuspiciousFileOperation
+
+
+def link_callback(uri, rel):
+        """
+        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+        resources
+        """
+    
+        if uri.startswith(settings.STATIC_URL):
+            path = uri.replace(settings.STATIC_URL, "")
+            safe_path = safe_join(settings.STATIC_ROOT, path)
+        elif uri.startswith(settings.MEDIA_URL):
+            path = uri.replace(settings.MEDIA_URL, "")
+            safe_path = safe_join(settings.MEDIA_ROOT, path)
+        else:
+            return uri
+
+        # Make sure the resulting path is within the base directory
+        try:
+            if not os.path.isfile(safe_path):
+                raise SuspiciousFileOperation(f"The file {safe_path} does not exist")
+        except SuspiciousFileOperation:
+            return uri
+
+        return safe_path

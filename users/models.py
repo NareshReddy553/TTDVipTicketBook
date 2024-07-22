@@ -44,6 +44,7 @@ class Pilgrim(models.Model):
     modified_datetime = models.DateTimeField(auto_now=True)
     gender = models.CharField(max_length=5, blank=True, null=True)
     seva = models.CharField(max_length=100, blank=True, null=True)
+    is_primary=models.BooleanField(default=True)
 
     class Meta:
         managed=False
