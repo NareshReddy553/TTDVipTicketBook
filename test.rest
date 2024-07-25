@@ -153,7 +153,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 ###
-POST http://127.0.0.1:8000/api/users/vip-darshan-letter/
+POST http://13.201.33.169:8000/api/users/vip-darshan-letter/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNjUxMTY2LCJpYXQiOjE3MjE2NDM5NjYsImp0aSI6ImFmZmI3NDE2YTk5ODRkYjdhYTNiMTgxOWI0YWE2MDYzIiwidXNlcl9pZCI6MjF9.dR9m5exD-E55qlcX5VK6xXlGSRMMGxb9SCr1018IHSg
 
@@ -162,6 +162,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
     "pilgrim_id":[99,98,104],
     "accommodation_date":"2012-04-23",
     "darshan_date":"2012-04-23",
-    
+    "email":"",
     "contact":"9398977891"
 }
