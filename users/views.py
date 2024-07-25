@@ -90,6 +90,7 @@ def generate_vip_darshan_letter(request):
             'darshan_date':darshan_date,
             'email': data.get('email'),
             'contact': data.get('contact')
+            'user':request.user
         }
    
     response = HttpResponse(content_type='application/pdf')
