@@ -89,7 +89,7 @@ def generate_vip_darshan_letter(request):
             'accommodation_date':accommodation_date,
             'darshan_date':darshan_date,
             'email': data.get('email'),
-            'contact': data.get('contact')
+            'contact': data.get('contact'),
             'user':request.user
         }
    
