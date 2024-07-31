@@ -26,7 +26,7 @@
       }
       .paragraph p {
         text-indent: 20px;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.5;
         word-spacing: 3;
       }
@@ -118,11 +118,11 @@
       </div>
       <!-- Date -->
       <div class="date">
-        <p style="font-weight: 600">DATE: {{date}}</p>
+        <p>Date <span style="font-weight: bold">{{current_date}}</span></p>
       </div>
       <!-- Salutation -->
       <div class="salutation">
-        <h3 style="font-weight: 600">Dear Sri Syamala Rao garu,</h3>
+        <h3 style="font-weight: 500">Respected sir,</h3>
       </div>
       <!-- Paragraph -->
       <!-- <div class="paragraph">
@@ -136,11 +136,14 @@
       <div class="paragraph">
         <p style="text-indent: 20px; font-size: 18px">
           I am writing to inform you that the following pilgrims will be
-          visiting Tirumala and requesting for the Accommodationb and Beginning
-          Break Darshan.Please arrange to provide the same.
+          visiting Tirumala and requesting for the
+          <span style="font-weight: bold">ACCOMMODATION</span> and
+          <span style="font-weight: bold">VIP BREAK DARSHAN</span>.Please
+          arrange to provide the same.
         </p>
       </div>
       <!-- Table -->
+       <div class="pilgrim-table" style="margin:0px 20px 0px 20px">
       <table class="bordered-table">
         <thead>
           <tr>
@@ -161,14 +164,20 @@
           {% endfor %}
         </tbody>
       </table>
+    </div>
       <!-- Content -->
       <div class="content">
         <p style="margin-top: 10px">
-          Date of Accommodation:- {{ accommodation_date }}
+          Date of Accommodation:-
+          <span style="font-weight: bold">{{ accommodation_date }}</span>
         </p>
-        <p>Date of Break Darshan:- {{ darshan_date }}</p>
-        <p>Email Address:- {{ email }}</p>
-        <p>Contact No.:- {{ contact }}</p>
+        <p>
+          Date of Break Darshan:-
+          <span style="font-weight: bold">{{ darshan_date }}</span>
+        </p>
+        <p>
+          Contact No.:- <span style="font-weight: bold">{{ contact }}</span>
+        </p>
       </div>
       <!-- wish -->
       <div class="wish">
@@ -178,16 +187,15 @@
       <table class="pdf-table">
         <tr>
           <td class="left-content">
-            <p class="label">To</p>
-            <p>Sri J.Syamala rao, IAS</p>
-            <p>Additional Executive Officer,</p>
-            <p>Tirumala Tirupati Devasthanams,</p>
-            <p>Tirupathi.</p>
+            <br class="label">To</br>
+            The Joint Executive Officer,<br />
+            Tirumala Tirupathi Devasthanam,<br />
+            Tirumala Hills, Tirumala.</p>
           </td>
           <td class="right-content">
             <div class="signature">
               <p>Your sincerely,</p>
-              <p><strong>({{user.first_name}})</strong></p>
+              <p><strong>({{user}})</strong></p>
             </div>
           </td>
         </tr>

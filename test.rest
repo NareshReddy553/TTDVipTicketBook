@@ -175,13 +175,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 POST http://127.0.0.1:8000/api/users/vip-darshan-letter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzcwOTEwLCJpYXQiOjE3MjIzNjM3MTAsImp0aSI6ImVhNDAwOTRlNThmNTRhM2I5NWRiYTkxODE4OTdiNDljIiwidXNlcl9pZCI6MjF9.w3fBufj2p09866ZtpdJ95Ms8KROAdLaPAgdbP0Yakac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDEyMDg1LCJpYXQiOjE3MjI0MDQ4ODUsImp0aSI6IjlmNjE1Y2U2NzFiZTRlZDE5M2FjOTQ1Y2NlOTYwYTM3IiwidXNlcl9pZCI6MjF9.NLkfe1CzxNrgqRod7Rn2xiOa2ecgNlw0q6zKPHDgps4
 
 
+# {
+#     "pilgrim_id":[99,98,104],
+#     "accommodation_date":"2012-04-23",
+#     "darshan_date":"2012-04-23",
+#     "email":"",
+#     "contact":"9398977891"
+# }
 {
-    "pilgrim_id":[99,98,104],
-    "accommodation_date":"2012-04-23",
-    "darshan_date":"2012-04-23",
-    "email":"",
-    "contact":"9398977891"
+        "pilgrims": [{"pilgrim_name":"Naresh","phone_number":1234567890,"aadhaar_number":123456789012,"age":22}],
+        "accommodation_date":"2012-04-23",
+        "darshan_date":"2012-04-23",
+        "pilgrims_count":4
 }

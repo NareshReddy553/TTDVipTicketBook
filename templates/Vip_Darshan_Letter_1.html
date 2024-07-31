@@ -22,6 +22,7 @@
       .address{
         text-align: left; 
         font-weight: bold;
+        margin-bottom: 30px;
         
       }
       .date {
@@ -36,6 +37,7 @@
       .letter-body {
         margin-bottom: 40px;
         line-height: 1.5;
+        text-align:left;
       }
 
       .letter-footer {
@@ -68,7 +70,7 @@
         <p >Date. <span class="bold">{{ current_date }}</span></p>
       </div>
       
-    <table calss="address" style="width: 100%; border: none;">
+    <table calss="address" style="width: 100%; border: none;margin-bottom:30px;">
       <tr>
           <td style="text-align: left; width: 50%;font-weight: bold;">
               To<br>
@@ -80,29 +82,28 @@
     </table>
 
     <div class="letter-body">
-      <p>Respected Sir,</p>
+      <p style="margin-bottom: 30px;">Respected Sir,</p>
 
-      <p style="text-indent: 20px">
+      <p style="text-indent: 30px">
         Sri <span class="bold">{{ pilgrim_name }}</span> & Family Members (<span
           class="bold"
-          >{{ number_of_pilgrims }}</span
+          >{{ pilgrims_count }}</span
         >) who are my close associates are arriving to Hill Shrines, Tirumala on
-        <span class="bold">{{ accommodation_date }}</span> to worship Lord Sri
-        Venkateswara Swamy.
+        {{ accommodation_date }} to worship <span class="bold">Lord Sri
+        Venkateswara Swamy<span>.
       </p>
 
-      <p style="text-indent: 20px">
-        Hence, I request you that they may be provided suitable accommodation on
-        Dt <span class="bold">{{ accommodation_date }}</span> and VIP
-        Break-Darshan on Dt <span class="bold">{{ darshan_date }}</span>.
+      <p style="text-indent: 30px">
+        Hence, I request you that they may be provided suitable <span class="bold">ACCOMMODATION<span> on
+        Date {{ accommodation_date }} and <span class="bold">VIP BREAK-DARSHAN<span> on Date {{ darshan_date }}.
       </p>
 
-      <pstyle="text-indent: 40px">I hope that you will oblige by treating the case as my personal.</pstyle=>
+      <p style="text-indent: 60px">I hope that you will oblige by treating the case as my personal.</p>
     </div>
 
     <div class="letter-footer">
       <p class="signature">Yours Sincerely,</p>
-      <p class="bold">{{ signature }}</p>
+      <p class="bold"></p>
       <p class="bold">({{ user }})</p>
     </div>
   </body>

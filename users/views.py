@@ -78,23 +78,30 @@ def Blockdates_on_month_or_year(request):
 @permission_classes([IsAuthenticated])
 def generate_vip_darshan_letter(request):
     data=request.data
+    pilgrim_data=data.get("pilgrims")
     accommodation_date = datetime.strptime(data.get('accommodation_date'), "%Y-%m-%d").date() if data.get('accommodation_date') else None
     darshan_date = datetime.strptime(data.get('darshan_date'), "%Y-%m-%d").date() if data.get('darshan_date') else None
     context = {
         'current_date': datetime.now().strftime("%d.%m.%Y"),
-        'pilgrims': [],
+        'pilgrims': pilgrim_data,
         'accommodation_date':accommodation_date.strftime("%d.%m.%Y"),
         'darshan_date':darshan_date.strftime("%d.%m.%Y"),
-        # 'email': data.get('email'),
-        # 'contact': data.get('contact'),
-        'user':request.user.first_name + request.user.last_name,
-        'number_of_pilgrims':request.data.get("pilgrim_count")
+        'user':request.user.first_name +" "+request.user.last_name,
+        'pilgrims_count':request.data.get("pilgrim_count",1)-1
     }
-   
+    if isinstance(pilgrim_data,list):
+        if len(pilgrim_data) > 1:
+            template = get_template('vip_darshan_letter.html')
+    context["pilgrim_name"]=pilgrim_data[0].get('pilgrim_name')
+    template = get_template('Vip_Darshan_Letter_1.html')
+    
+    
+            
+        
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="vip_darshan_letter.pdf"'
     # find the template and render it.
-    template = get_template('Vip_Darshan_Letter_1.html')
+    
     html = template.render(context)
 
     # create a pdf
