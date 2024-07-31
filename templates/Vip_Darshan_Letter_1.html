@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter Template</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      .letter-head {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .emblem {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      
+      .address{
+        text-align: left; 
+        font-weight: bold;
+        
+      }
+      .date {
+        text-align: right;
+        white-space: nowrap; /* Prevents the date from wrapping to the next line */
+      }
+      
+      .address p, .date p {
+        margin: 0;
+        text-align: left;
+      }
+      
+      .date {
+        text-align: right;
+      }
+
+      .letter-body {
+        margin-bottom: 40px;
+        line-height: 1.5;
+      }
+      .letter-footer {
+        text-align: right;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      .center {
+        text-align: center;
+      }
+      .signature {
+        margin-top: 80px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="letter-head">
+      <div class="emblem">
+        <img
+          src="{% static 'images/Emblem_of_Andhra_Pradesh.png' %}"
+          alt="Emblem"
+          class="img-fluid"
+          style="width: 100px; height: auto"
+        />
+      </div>
+      <div class="date" style="text-align: right">
+        <p >Date. <span class="bold">{{ current_date }}</span></p>
+      </div>
+      
+    <table style="width: 100%; border: none;">
+      <tr>
+          <td style="text-align: left; width: 50%;font-weight: bold;">
+              To<br>
+              The Joint Executive Officer,<br>
+              Tirumala Tirupathi Devasthanam,<br>
+              Tirumala Hills, Tirumala
+          </td>
+          <td style="text-align: right; width: 50%;">
+              Dt. <span style="font-weight: bold;">{{ current_date }}</span>
+          </td>
+      </tr>
+  </table>
+
+    <div class="letter-body">
+      <p>Respected Sir,</p>
+
+      <p style="text-indent: 20px">
+        Sri <span class="bold">{{ pilgrim_name }}</span> & Family Members (<span
+          class="bold"
+          >{{ number_of_pilgrims }}</span
+        >) who are my close associates are arriving to Hill Shrines, Tirumala on
+        <span class="bold">{{ accommodation_date }}</span> to worship Lord Sri
+        Venkateswara Swamy.
+      </p>
+
+      <p style="text-indent: 20px">
+        Hence, I request you that they may be provided suitable accommodation on
+        Dt <span class="bold">{{ accommodation_date }}</span> and VIP
+        Break-Darshan on Dt <span class="bold">{{ darshan_date }}</span>.
+      </p>
+
+      <pstyle="text-indent: 40px">I hope that you will oblige by treating the case as my personal.</pstyle=>
+    </div>
+
+    <div class="letter-footer">
+      <p class="signature">Yours Sincerely,</p>
+      <p class="bold">{{ signature }}</p>
+      <p class="bold">({{ user }})</p>
+    </div>
+  </body>
+</html>

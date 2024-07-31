@@ -54,18 +54,34 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTAwNTg2LCJpYXQiOjE3MjA0OTMzODYsImp0aSI6ImVjOGE0YzEyYzQ3MzQyYjVhN2RjNTcyNzIyMDQ0YWYzIiwidXNlcl9pZCI6MjF9.Y7eHRfe8YrA5BIhVHG_85t8EL9aBNcw1ZDoldutiJQY
+Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzI4NTExLCJpYXQiOjE3MjIzMjEzMTEsImp0aSI6ImNiMjY1M2E1YTA4YjRkZmM4OTVkOWMyZGIzMTM3YmNmIiwidXNlcl9pZCI6MjF9.oFfL6g62cJwJHQubxexCZQG3oNefsmkCq1oWBYO0-rseyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzQ2MjE5LCJpYXQiOjE3MjIzMzkwMTksImp0aSI6IjRjNGIyZjdkMmM4ZTRkYzViMDQ3NWJmNGJlZmI3MGZkIiwidXNlcl9pZCI6MjF9.0AlP_BVifMnG-HV5LOJI0ji-ClXob15Z30H-i7UyrN4
 
-[
-    {
-        "pilgrim_name": "gnr123",
-        "phone_number": "1232578931",
-        "aadhaar_number": "12348311213",
-        "age": "28",
-        "booked_datetime":"2024-06-26 07:31:08"
+# [
+#     {
+#         "pilgrim_name": "gnr123",
+#         "phone_number": "1232578931",
+#         "aadhaar_number": "12348311213",
+#         "age": "28",
+#         "booked_datetime":"2024-06-26 07:31:08",
+#         "is_master":"1"
+#     },
+#     {"pilgrim_count":"6"}
 
-    }
-]
+# ]
+{
+    "pilgrims": [
+        {
+            "pilgrim_name": "gnr123",
+            "phone_number": "1232578931",
+            "age": "28",
+            "booked_datetime": "2024-06-26 07:31:08",
+            "is_master": "1"
+        }
+    ],
+    "pilgrim_count": "6",
+    "booked_datetime": "2024-06-26 07:31:08"
+}
+
 
 ###
 Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
@@ -94,13 +110,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ### Api to get the pilgrim
 GET http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNjM1ODIwLCJpYXQiOjE3MjE2Mjg2MjAsImp0aSI6ImUxN2ZhZjEwZWFkNDQyZmFhNGQ0NjhhOGI5YjdjMzg3IiwidXNlcl9pZCI6MjF9.Uqy5o9UgVekoQnGnk2si17kfeR9BtppysBMmLB_U8tY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzcwOTEwLCJpYXQiOjE3MjIzNjM3MTAsImp0aSI6ImVhNDAwOTRlNThmNTRhM2I5NWRiYTkxODE4OTdiNDljIiwidXNlcl9pZCI6MjF9.w3fBufj2p09866ZtpdJ95Ms8KROAdLaPAgdbP0Yakac
 
 
 ### Api to delete the pilgrim
 DELETE http://127.0.0.1:8000/api/users/pilgrims/110/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTExOTc3LCJpYXQiOjE3MjA1MDQ3NzcsImp0aSI6IjI5ODJlNjU2NzkwZjRlZTE5MmIzYzU0OTE2NDI5ZDQ5IiwidXNlcl9pZCI6MjF9._KU6oDWJRd0mzch3MnJ-rGUVeYDO98HlBfAiBzGGx0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzQ2MjE5LCJpYXQiOjE3MjIzMzkwMTksImp0aSI6IjRjNGIyZjdkMmM4ZTRkYzViMDQ3NWJmNGJlZmI3MGZkIiwidXNlcl9pZCI6MjF9.0AlP_BVifMnG-HV5LOJI0ji-ClXob15Z30H-i7UyrN4
 
 
 
@@ -153,9 +169,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 ###
-POST http://13.201.33.169:8000/api/users/vip-darshan-letter/
+POST http://127.0.0.1:8000/api/users/vip-darshan-letter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNjUxMTY2LCJpYXQiOjE3MjE2NDM5NjYsImp0aSI6ImFmZmI3NDE2YTk5ODRkYjdhYTNiMTgxOWI0YWE2MDYzIiwidXNlcl9pZCI6MjF9.dR9m5exD-E55qlcX5VK6xXlGSRMMGxb9SCr1018IHSg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzcwOTEwLCJpYXQiOjE3MjIzNjM3MTAsImp0aSI6ImVhNDAwOTRlNThmNTRhM2I5NWRiYTkxODE4OTdiNDljIiwidXNlcl9pZCI6MjF9.w3fBufj2p09866ZtpdJ95Ms8KROAdLaPAgdbP0Yakac
 
 
 {

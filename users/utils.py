@@ -83,3 +83,10 @@ def link_callback(uri, rel):
             return uri
 
         return safe_path
+    
+    
+from datetime import datetime
+
+def get_date_from_string(date_string, date_format="%Y-%m-%d %H:%M:%S"):
+    parsed_datetime = datetime.strptime(date_string, date_format)
+    return parsed_datetime.date()

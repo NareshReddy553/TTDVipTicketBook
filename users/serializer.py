@@ -1,4 +1,4 @@
-
+from datetime import datetime,date
 from rest_framework import serializers
 
 from config.settings import MLA_QUOTA_BOOK_FOR_DAY,MP_QUOTA_BOOK_FOR_DAY
@@ -6,6 +6,8 @@ from users.models import Blockdate, Pilgrim, UserProfile,PilgrimStats
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.db import transaction
+
+from users.utils import get_date_from_string
 
 
 
@@ -38,17 +40,10 @@ class UsersSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     
-    
-    
-
-
-        
         
 class PilgrimstatsSerializer(serializers.ModelSerializer):
     is_blocked=serializers.SerializerMethodField()
             
-    
-    
     class Meta:
         model = PilgrimStats
         fields=["pilgrimstat_id","booked_datetime","booked_count","vacant_count","is_blocked"]
@@ -70,36 +65,45 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
         pilgrims = [Pilgrim(**item, user=user) for item in validated_data]
         created_pilgrims = Pilgrim.objects.bulk_create(pilgrims)
 
-        stats_dict = {}
-        for pilgrim in created_pilgrims:
-            key = (pilgrim.booked_datetime.date(), user.pk)
-            pilgrimstats_qs=PilgrimStats.objects.filter(booked_datetime=pilgrim.booked_datetime.date(),user=user).first()
-            if pilgrimstats_qs is not None:
-                if key not in stats_dict:
-                    stats_dict[key] = {
-                        'booked_count': pilgrimstats_qs.booked_count,
-                        'vacant_count': pilgrimstats_qs.vacant_count
-                    }
-            else:
-                if key not in stats_dict:
-                    stats_dict[key] = {
-                    'booked_count': 0,
-                    'vacant_count': MLA_QUOTA_BOOK_FOR_DAY if user.is_mla else MP_QUOTA_BOOK_FOR_DAY
-                }
+        total_pilgrim_count=int(self.context['request'].data.get('pilgrim_count'))
+        booked_datetime=self.context['request'].data.get('booked_datetime')
+        if booked_datetime:
+            booked_date=get_date_from_string(booked_datetime)
+        
+        if total_pilgrim_count:
+            PilgrimStats.objects.create(booked_datetime=booked_date,
+                user=user,pilgrim_count=total_pilgrim_count)
+            
+        # stats_dict = {}
+        # for pilgrim in created_pilgrims:
+        #     key = (pilgrim.booked_datetime.date(), user.pk)
+        #     pilgrimstats_qs=PilgrimStats.objects.filter(booked_datetime=pilgrim.booked_datetime.date(),user=user).first()
+        #     if pilgrimstats_qs is not None:
+        #         if key not in stats_dict:
+        #             stats_dict[key] = {
+        #                 'booked_count': pilgrimstats_qs.booked_count,
+        #                 'vacant_count': pilgrimstats_qs.vacant_count
+        #             }
+        #     else:
+        #         if key not in stats_dict:
+        #             stats_dict[key] = {
+        #             'booked_count': 0,
+        #             'vacant_count': MLA_QUOTA_BOOK_FOR_DAY if user.is_mla else MP_QUOTA_BOOK_FOR_DAY
+        #         }
                 
             
             
 
-            stats_dict[key]['booked_count'] += 1
-            stats_dict[key]['vacant_count'] -= 1
+        #     stats_dict[key]['booked_count'] += 1
+        #     stats_dict[key]['vacant_count'] -= 1
 
-        for key, value in stats_dict.items():
-            booked_date, user_id = key
-            stats, created = PilgrimStats.objects.update_or_create(
-                booked_datetime=booked_date,
-                user=user,
-                defaults={'booked_count': value['booked_count'], 'vacant_count': value['vacant_count']},
-                )
+        # for key, value in stats_dict.items():
+        #     booked_date, user_id = key
+        #     stats, created = PilgrimStats.objects.update_or_create(
+        #         booked_datetime=booked_date,
+        #         user=user,
+        #         defaults={'booked_count': value['booked_count'], 'vacant_count': value['vacant_count']},
+        #         )
                 
 
         return created_pilgrims
@@ -108,7 +112,7 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
 class PilgrimSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pilgrim
-        fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','age','booked_datetime','seva','gender']
+        fields = "__all__"
         list_serializer_class = BulkPilgrimsSerializer
         
 \

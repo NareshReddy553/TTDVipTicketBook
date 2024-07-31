@@ -36,15 +36,15 @@ class Pilgrim(models.Model):
     pilgrim_id = models.AutoField(primary_key=True)
     pilgrim_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=10, blank=True, null=True)
-    aadhaar_number = models.CharField(max_length=12,unique=True)
+    aadhaar_number = models.CharField(max_length=12,blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='pilgrims')
+    user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING, related_name='pilgrims',blank=True, null=True)
     booked_datetime = models.DateTimeField()
     created_datetime = models.DateTimeField(auto_now_add=True)
     modified_datetime = models.DateTimeField(auto_now=True)
     gender = models.CharField(max_length=5, blank=True, null=True)
     seva = models.CharField(max_length=100, blank=True, null=True)
-    is_primary=models.BooleanField(default=True)
+    is_master=models.BooleanField(default=True,blank=True, null=True)
 
     class Meta:
         managed=False
@@ -59,6 +59,7 @@ class PilgrimStats(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING, related_name='pilgrimstats')
     created_datetime = models.DateTimeField(auto_now_add=True)
     modified_datetime = models.DateTimeField(auto_now=True)
+    pilgrim_count=models.IntegerField(default=0)
 
     class Meta:
         managed=False
