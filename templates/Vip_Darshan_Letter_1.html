@@ -84,14 +84,16 @@
     <div class="letter-body">
       <p style="margin-bottom: 30px;">Respected Sir,</p>
 
+      {% if pilgrims_count > 0 %}
       <p style="text-indent: 30px">
-        Sri <span class="bold">{{ pilgrim_name }}</span> & Family Members (<span
-          class="bold"
-          >{{ pilgrims_count }}</span
-        >) who are my close associates are arriving to Hill Shrines, Tirumala on
-        {{ accommodation_date }} to worship <span class="bold">Lord Sri
-        Venkateswara Swamy<span>.
-      </p>
+        Sri <span class="bold">{{ pilgrim_name }}</span> & Family Members (<span class="bold">{{ pilgrims_count }}</span>) who are my close associates are arriving to Hill Shrines, Tirumala on {{ accommodation_date }} to worship <span class="bold">Lord Sri Venkateswara Swamy<span>.
+    </p>
+    {% else %}
+    <p style="text-indent: 30px">
+    Sri <span class="bold">{{ pilgrim_name }}</span> who is my close associate is arriving to Hill Shrines, Tirumala on {{ accommodation_date }} to worship <span class="bold">Lord Sri Venkateswara Swamy<span>.
+    </p>
+    {% endif %}
+
 
       <p style="text-indent: 30px">
         Hence, I request you that they may be provided suitable <span class="bold">ACCOMMODATION<span> on
