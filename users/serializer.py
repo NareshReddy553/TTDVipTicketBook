@@ -46,7 +46,7 @@ class PilgrimstatsSerializer(serializers.ModelSerializer):
             
     class Meta:
         model = PilgrimStats
-        fields=["pilgrimstat_id","booked_datetime","booked_count","vacant_count","is_blocked"]
+        fields=["pilgrimstat_id","booked_datetime","pilgrim_count","is_blocked"]
         
     def get_is_blocked(self, obj):
 
@@ -68,7 +68,7 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
         total_pilgrim_count=int(self.context['request'].data.get('pilgrim_count'))
         booked_datetime=self.context['request'].data.get('booked_datetime')
         if booked_datetime:
-            booked_date=get_date_from_string(booked_datetime)
+            booked_date=get_date_from_string(booked_datetime,"%Y-%m-%d")
         
         if total_pilgrim_count:
             PilgrimStats.objects.create(booked_datetime=booked_date,

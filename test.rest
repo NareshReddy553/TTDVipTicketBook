@@ -54,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzI4NTExLCJpYXQiOjE3MjIzMjEzMTEsImp0aSI6ImNiMjY1M2E1YTA4YjRkZmM4OTVkOWMyZGIzMTM3YmNmIiwidXNlcl9pZCI6MjF9.oFfL6g62cJwJHQubxexCZQG3oNefsmkCq1oWBYO0-rseyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzQ2MjE5LCJpYXQiOjE3MjIzMzkwMTksImp0aSI6IjRjNGIyZjdkMmM4ZTRkYzViMDQ3NWJmNGJlZmI3MGZkIiwidXNlcl9pZCI6MjF9.0AlP_BVifMnG-HV5LOJI0ji-ClXob15Z30H-i7UyrN4
+Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDEwMTEwLCJpYXQiOjE3MjI0MDI5MTAsImp0aSI6ImQxMDIwZTY4NjQ4OTRiNjQ4YmQ2OGMxYzBlNDkyZGY0IiwidXNlcl9pZCI6MjF9.MH0TeRhrx4uMoGSrjy9v_rTJSxt-5QOFokpi34P6tg4
 
 # [
 #     {
@@ -68,19 +68,23 @@ Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjo
 #     {"pilgrim_count":"6"}
 
 # ]
+
 {
-    "pilgrims": [
-        {
-            "pilgrim_name": "gnr123",
-            "phone_number": "1232578931",
-            "age": "28",
-            "booked_datetime": "2024-06-26 07:31:08",
-            "is_master": "1"
-        }
-    ],
-    "pilgrim_count": "6",
-    "booked_datetime": "2024-06-26 07:31:08"
+   "pilgrims":[
+      {
+         "booked_datetime":"2024-07-31",
+         "seva":"VIP Break",
+         "aadhaar_number":232323671023,
+         "phone_number":1212121212,
+         "age":56,
+         "pilgrim_name":"TestUser1",
+         "is_master":true
+      }
+   ],
+   "pilgrim_count":1,
+   "booked_datetime":"2024-07-31"
 }
+
 
 
 ###
@@ -122,9 +126,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 
-GET http://127.0.0.1:8000/api/users/pilgrimstats/?month=6&year=2024
+GET http://127.0.0.1:8000/api/users/pilgrimstats/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NDcxODA5LCJpYXQiOjE3MTk0NjQ2MDksImp0aSI6IjYyNTBkMTE1YTNiNDRmOWRiNmVhMGZhZDFlODA5NWI1IiwidXNlcl9pZCI6MX0.9lcIixJ899CWD1WZiDioTzCP0q1xy6aMsgLKturkS7I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDA5MDI1LCJpYXQiOjE3MjI0MDE4MjUsImp0aSI6IjM4MTJkZWU2MjE3ZjRlMmE4MjU0MzdmZWU2YmY1NmEzIiwidXNlcl9pZCI6MjF9.Wajc2kexyRZnLpnfjUfuDt7KWhZVBVfHbZkNh8xu0H0
 
 
 ### Api for Block the dates 

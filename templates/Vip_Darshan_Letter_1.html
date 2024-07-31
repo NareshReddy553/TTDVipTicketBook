@@ -28,12 +28,7 @@
         text-align: right;
         white-space: nowrap; /* Prevents the date from wrapping to the next line */
       }
-      
-      .address p, .date p {
-        margin: 0;
-        text-align: left;
-      }
-      
+            
       .date {
         text-align: right;
       }
@@ -42,6 +37,7 @@
         margin-bottom: 40px;
         line-height: 1.5;
       }
+
       .letter-footer {
         text-align: right;
       }
@@ -72,7 +68,7 @@
         <p >Date. <span class="bold">{{ current_date }}</span></p>
       </div>
       
-    <table style="width: 100%; border: none;">
+    <table calss="address" style="width: 100%; border: none;">
       <tr>
           <td style="text-align: left; width: 50%;font-weight: bold;">
               To<br>
@@ -80,11 +76,8 @@
               Tirumala Tirupathi Devasthanam,<br>
               Tirumala Hills, Tirumala
           </td>
-          <td style="text-align: right; width: 50%;">
-              Dt. <span style="font-weight: bold;">{{ current_date }}</span>
-          </td>
       </tr>
-  </table>
+    </table>
 
     <div class="letter-body">
       <p>Respected Sir,</p>
