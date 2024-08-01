@@ -128,24 +128,18 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        booked_date = instance.booked_datetime
-        pilgrimstanst=PilgrimStats.objects.filter(user=instance.user,booked_datetime=booked_date.date()).first()
-        
-                
+        booked_date = instance.booked_datetime        
         self.perform_destroy(instance)
-        other_pilgrims=Pilgrim.objects.filter(user=request.user,booked_datetime=booked_date)
-        if other_pilgrims:
-            if pilgrimstanst:
-                pilgrimstanst.pilgrim_count =other_pilgrims.count()
+        pilgrimstanst=PilgrimStats.objects.filter(user=instance.user,booked_datetime=booked_date.date()).delete()
+        # other_pilgrims=Pilgrim.objects.filter(user=request.user,booked_datetime=booked_date)
+        # if other_pilgrims:
+        #     if pilgrimstanst:
+        #         pilgrimstanst.pilgrim_count =other_pilgrims.count()
                 
-        else:
-            pilgrimstanst.pilgrim_count =0
+        # else:
+        #     pilgrimstanst.pilgrim_count =0
             
         pilgrimstanst.save()
-            
-        
-        
-
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):

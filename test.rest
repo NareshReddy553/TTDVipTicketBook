@@ -118,9 +118,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ### Api to delete the pilgrim
-DELETE http://127.0.0.1:8000/api/users/pilgrims/110/
+DELETE http://127.0.0.1:8000/api/users/pilgrims/189/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMzQ2MjE5LCJpYXQiOjE3MjIzMzkwMTksImp0aSI6IjRjNGIyZjdkMmM4ZTRkYzViMDQ3NWJmNGJlZmI3MGZkIiwidXNlcl9pZCI6MjF9.0AlP_BVifMnG-HV5LOJI0ji-ClXob15Z30H-i7UyrN4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDMzODMwLCJpYXQiOjE3MjI0MjY2MzAsImp0aSI6ImZkZjVkMGZiNjkyNjQ0ZDBhMzljOGRjNDUyNDkyYTFhIiwidXNlcl9pZCI6MjF9._AAVL5lFw5NrGBzvvLDslKZ1qxJh7n9pXxbqKJFcmWc
 
 
 
