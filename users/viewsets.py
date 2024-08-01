@@ -139,7 +139,7 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
         # else:
         #     pilgrimstanst.pilgrim_count =0
             
-        pilgrimstanst.save()
+        # pilgrimstanst.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):
