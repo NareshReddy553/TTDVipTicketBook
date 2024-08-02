@@ -105,7 +105,7 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
                     response_data.append(serializer.data)
                     if item.get('pilgrim_count'):
                         pilgrimstats=PilgrimStats.objects.filter(user=request.user,booked_datetime=instance.booked_datetime.date()).first()
-                        pilgrimstats.booked_datetime=item.get('pilgrim_count')
+                        pilgrimstats.pilgrim_count=item.get('pilgrim_count')
                         pilgrimstats.save()
                 
         except Exception as e:

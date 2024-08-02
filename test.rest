@@ -92,17 +92,7 @@ Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNTg1NjMyLCJpYXQiOjE3MjI1Nzg0MzIsImp0aSI6ImZjYzM0ZGU2NTZmMDQ1ZjZiYzk1MWJjNTk4NWFhNjAwIiwidXNlcl9pZCI6MjF9.JDede0HjP2xL81rsHLRYAiOPin9XT5S1HmKawC4uHqU
 
-[
-    {        "pilgrim_id":"98",
-            "pilgrim_name": "gnr123",
-            "phone_number": "1232578931",
-            "aadhaar_number": "12348311213",
-            "age": "29",
-            "booked_datetime":"2024-06-26 07:31:08",
-            "pilgrim_count":6
-
-    }
-]
+[{"booked_datetime":"2024-08-05T00:00:00Z","seva":"VIP Break","aadhaar_number":232323671023,"phone_number":1212121212,"age":45,"pilgrim_name":"TestUser1","pilgrim_id":213,"created_datetime":"2024-08-02T06:42:27Z","modified_datetime":"2024-08-02T06:42:27Z","gender":null,"is_master":true,"user":21,"editable":true,"clicked":false,"pilgrim_count":2}]
 
 
 ### Api to get the pilgrim
