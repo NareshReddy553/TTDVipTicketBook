@@ -103,6 +103,11 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
                     serializer.is_valid(raise_exception=True)
                     self.perform_update(serializer)
                     response_data.append(serializer.data)
+                    if item.get('pilgrim_count'):
+                        pilgrimstats=PilgrimStats.objects.filter(user=request.user,booked_datetime=instance.booked_datetime.date()).first()
+                        pilgrimstats.booked_datetime=item.get('pilgrim_count')
+                        pilgrimstats.save()
+                
         except Exception as e:
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
