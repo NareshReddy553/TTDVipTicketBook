@@ -6,6 +6,7 @@ from .managers import CustomUserManager
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
+    username=models.CharField(max_length=150,unique=True)
     email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -20,7 +21,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     constituency = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(max_length=5, blank=True, null=True)
     
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()

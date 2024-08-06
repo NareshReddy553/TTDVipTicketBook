@@ -18,6 +18,7 @@ class UsersProfileSerializer(serializers.ModelSerializer):
         fields = ['user_id','is_superuser','is_mla','email','constituency','email','first_name','last_name']
 
 class UsersSerializer(serializers.ModelSerializer):
+    username=serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True)
     first_name = serializers.CharField(required=True, max_length=100)

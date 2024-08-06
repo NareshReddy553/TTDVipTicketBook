@@ -1,8 +1,8 @@
-POST http://13.201.33.169:8000/auth/token/
+POST http://127.0.0.1:8000/auth/token/
 content-type: application/json
 
 {
-    "email": "admin@accentiqa.com",
+    "username": "admin@accentiqa.com",
     "password": "admin"
 }
 

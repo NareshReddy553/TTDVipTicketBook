@@ -16,7 +16,31 @@ from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 import os
 from django.template.loader import get_template
+from rest_framework import permissions, status
+from rest_framework_simplejwt.tokens import RefreshToken
 
+class CustomTokenObtainPairView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if not username or not password:
+            return Response({'error': 'Please provide both username/email and password.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = UserProfile.objects.filter(username=username).first()
+        if not user:
+            user = UserProfile.objects.filter(email=username).first()
+
+        if user and user.check_password(password):
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            })
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class UserProfileView(APIView):
