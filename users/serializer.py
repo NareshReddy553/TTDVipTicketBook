@@ -15,7 +15,7 @@ class UsersProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserProfile
-        fields = ['user_id','is_superuser','is_mla','email','constituency','email','first_name','last_name']
+        fields = ['user_id','is_superuser','is_mla','email','constituency','email','first_name','last_name','username']
 
 class UsersSerializer(serializers.ModelSerializer):
     username=serializers.CharField(required=True)
@@ -144,6 +144,7 @@ class BlockedDateSerializer(serializers.ModelSerializer):
 
 
 class PasswordResetSerializer(serializers.Serializer):
+    username=serializers.CharField(write_only=True, required=False)
     new_password = serializers.CharField(write_only=True, required=True, min_length=8)
     confirm_password = serializers.CharField(write_only=True, required=True, min_length=8)
 
@@ -153,6 +154,8 @@ class PasswordResetSerializer(serializers.Serializer):
         return attrs
 
     def save(self, user):
+        if 'username' in self.validated_data:
+            user.username = self.validated_data['username']
         user.set_password(self.validated_data['new_password'])
         user.save()
         return user

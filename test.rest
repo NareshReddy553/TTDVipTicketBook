@@ -152,6 +152,7 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMDg4NjYwLCJpYXQiOjE3MjAwODE0NjAsImp0aSI6IjI3YmE4NDk0OWVjMTRjODI5OGYzMTdiN2ExM2NiMmQ1IiwidXNlcl9pZCI6MX0.AZc7pBqfxMcQ1GOQ4g-m4Uh8DokQOFXI1w9M4cs264U
 
 {
+    "username":"Nareshg"
     "new_password":"Gnr@7167",
     "confirm_password":"Gnr@7167"
 }
