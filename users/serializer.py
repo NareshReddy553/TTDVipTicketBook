@@ -137,10 +137,13 @@ class BlockdateSerializer(serializers.Serializer):
         return blockdates
     
 class BlockedDateSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Blockdate
         fields = ['user', 'blockdate']
         read_only_fields = ['user']
+    
+    
 
 
 class PasswordResetSerializer(serializers.Serializer):

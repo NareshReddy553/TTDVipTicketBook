@@ -92,26 +92,33 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
         
 
     def bulk_update(self, request, *args, **kwargs):
-        partial = request.method=='PATCH'
         data = request.data
         response_data = []
+
         try:
             with transaction.atomic():
                 for item in data:
-                    instance = self.get_object_from_data(item)
-                    serializer = self.get_serializer(instance, data=item, partial=partial)
+                    instance = self.get_object_from_data(item)  # Get the instance to be updated
+                    serializer = self.get_serializer(instance, data=item, partial=True)
                     serializer.is_valid(raise_exception=True)
-                    self.perform_update(serializer)
-                    response_data.append(serializer.data)
-                    if item.get('pilgrim_count'):
-                        pilgrimstats=PilgrimStats.objects.filter(user=request.user,booked_datetime=instance.booked_datetime.date()).first()
-                        pilgrimstats.pilgrim_count=item.get('pilgrim_count')
-                        pilgrimstats.save()
-                
+                    self.perform_update(serializer)  # Perform the update
+                    response_data.append(serializer.data)  # Collect the updated data   
+
+                    # Update related PilgrimStats if 'pilgrim_count' is present
+                    if 'pilgrim_count' in item:
+                        pilgrimstats = PilgrimStats.objects.filter(
+                            user=request.user, 
+                            booked_datetime=instance.booked_datetime.date()
+                        ).first()
+                        
+                        if pilgrimstats:
+                            pilgrimstats.pilgrim_count = item.get('pilgrim_count')
+                            pilgrimstats.save()
+
+            return Response(response_data, status=status.HTTP_200_OK)
+        
         except Exception as e:
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response(response_data, status=status.HTTP_200_OK)
 
     def get_object_from_data(self, data):
         # Assumes 'id' field is present in data to fetch the object
@@ -180,6 +187,19 @@ class BlockDateViewSet(viewsets.ModelViewSet):
             user=self.request.user
         )
         return queryset
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        booked=PilgrimStats.objects.filter(user=request.user).values_list("booked_datetime",flat=True)
+        
+        return Response({"Blocked":serializer.data,"Booked": booked if booked else []})
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

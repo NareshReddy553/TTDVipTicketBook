@@ -90,9 +90,64 @@ Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjo
 ###
 Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNTg1NjMyLCJpYXQiOjE3MjI1Nzg0MzIsImp0aSI6ImZjYzM0ZGU2NTZmMDQ1ZjZiYzk1MWJjNTk4NWFhNjAwIiwidXNlcl9pZCI6MjF9.JDede0HjP2xL81rsHLRYAiOPin9XT5S1HmKawC4uHqU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTM2ODcyLCJpYXQiOjE3MjM1Mjk2NzIsImp0aSI6ImExNWM5ZGVmMzE5MTQ4NjBhZWRhNDI4NDRjMDQzZTRmIiwidXNlcl9pZCI6MjF9.pbQ7fIhx9XuzyTQdokSV8_KB2aG_1R4bJ_U2zPSahZc
 
-[{"booked_datetime":"2024-08-05T00:00:00Z","seva":"VIP Break","aadhaar_number":232323671023,"phone_number":1212121212,"age":45,"pilgrim_name":"TestUser1","pilgrim_id":213,"created_datetime":"2024-08-02T06:42:27Z","modified_datetime":"2024-08-02T06:42:27Z","gender":null,"is_master":true,"user":21,"editable":true,"clicked":false,"pilgrim_count":2}]
+[
+  {
+    "0": {
+      "booked_datetime": "2024-08-17T00:00:00Z",
+      "seva": "VIP Break",
+      "aadhaar_number": 232323671023,
+      "phone_number": 1212121212,
+      "age": 34,
+      "pilgrim_name": "TestUser1_edit_21",
+      "pilgrim_id": 239,
+      "created_datetime": "2024-08-13T05:20:19Z",
+      "modified_datetime": "2024-08-13T05:24:58Z",
+      "gender": null,
+      "is_master": true,
+      "user": 21,
+      "editable": false,
+      "clicked": true,
+      "id": "5ee91a8b-ec21-4069-a413-0a65de9bb515"
+    },
+    "1": {
+      "booked_datetime": "2024-08-17T00:00:00Z",
+      "seva": "VIP Break",
+      "aadhaar_number": 125200901823,
+      "phone_number": 1212121212,
+      "age": 34,
+      "pilgrim_name": "TestUser2_edit",
+      "pilgrim_id": 240,
+      "created_datetime": "2024-08-13T05:20:19Z",
+      "modified_datetime": "2024-08-13T05:22:13Z",
+      "gender": null,
+      "is_master": false,
+      "user": 21,
+      "editable": false,
+      "clicked": true,
+      "id": "9d3f06a4-de8f-4e45-a730-4f83da61f011"
+    },
+    "2": {
+      "booked_datetime": "2024-08-17T00:00:00Z",
+      "seva": "VIP Break",
+      "aadhaar_number": 128911289034,
+      "phone_number": 1212121212,
+      "age": 34,
+      "pilgrim_name": "TestUser3_edit",
+      "pilgrim_id": 241,
+      "created_datetime": "2024-08-13T05:20:19Z",
+      "modified_datetime": "2024-08-13T05:20:19Z",
+      "gender": null,
+      "is_master": false,
+      "user": 21,
+      "editable": false,
+      "clicked": true,
+      "id": "ccd0ae7e-52c4-49de-935e-a1c72d60c174"
+    },
+    "pilgrim_count": 3
+  }
+]
 
 
 ### Api to get the pilgrim
@@ -119,7 +174,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/blockdates/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MjI4NDE4LCJpYXQiOjE3MTkyMjEyMTgsImp0aSI6IjZhYTY4ODI0OTM0OTQ1ZWY5M2ZkZGM2N2VlMzhjNzI1IiwidXNlcl9pZCI6MX0.LWs_oCfnKWRzGpcqn5svGjiE-jnKSy5odz-zDdU4EQI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTM2ODcyLCJpYXQiOjE3MjM1Mjk2NzIsImp0aSI6ImExNWM5ZGVmMzE5MTQ4NjBhZWRhNDI4NDRjMDQzZTRmIiwidXNlcl9pZCI6MjF9.pbQ7fIhx9XuzyTQdokSV8_KB2aG_1R4bJ_U2zPSahZc
 
 #payload
 {
@@ -143,7 +198,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 GET http://127.0.0.1:8000/api/users/blockdates/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MzE4NDYwLCJpYXQiOjE3MTkzMTEyNjAsImp0aSI6ImZlMGI4NzM5OGU4ZjRkNmU4OTg5ZjlkMjYzMWRjOGU0IiwidXNlcl9pZCI6MX0.WcVNcGWjM9mwBQyg9jju_UlsBGMCetRhprlPwb4ALpc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTM2ODcyLCJpYXQiOjE3MjM1Mjk2NzIsImp0aSI6ImExNWM5ZGVmMzE5MTQ4NjBhZWRhNDI4NDRjMDQzZTRmIiwidXNlcl9pZCI6MjF9.pbQ7fIhx9XuzyTQdokSV8_KB2aG_1R4bJ_U2zPSahZc
 
 
 ###  possword reset
