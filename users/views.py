@@ -117,9 +117,7 @@ def generate_vip_darshan_letter(request):
         'accommodation_date':accommodation_date.strftime("%d.%m.%Y"),
         'darshan_date':darshan_date.strftime("%d.%m.%Y"),
         'user':request.user.first_name +" "+request.user.last_name,
-        'pilgrims_count':request.data.get("pilgrim_count",1)-1,
-        'qr_code_url': request.build_absolute_uri(reverse('generate_qr_code', kwargs={'hash_key': instance.hash_key})),
-        'hash_key': instance.hash_key,
+        'pilgrims_count':request.data.get("pilgrim_count",1)-1,'hash_key': instance.hash_key,
         'qr_code':generate_qr_code(request, instance.hash_key)
     }
     if isinstance(pilgrim_data,list):
@@ -148,23 +146,28 @@ def generate_vip_darshan_letter(request):
 
 
 class GenerateQRCodeView(APIView):
-
+    
     def get(self, request, hash_key):
-        instance = get_object_or_404(Pilgrim, hash_key=hash_key,is_master=True)
-        url_with_hash_key = f"{request.build_absolute_uri('/')}api/users/qr-verify/{hash_key}/"
+        # Fetch the instance or return a 404
+        instance = get_object_or_404(Pilgrim, hash_key=hash_key, is_master=True)
         
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=4,
-            border=1,
-        )
-        qr.add_data(url_with_hash_key)
-        qr.make(fit=True)
-
-        img = qr.make_image(fill='black', back_color='white')
-        buffer = BytesIO()
-        img.save(buffer)
-        buffer.seek(0)
-
-        return HttpResponse(buffer.getvalue(), content_type="image/png")
+        # Build the response data
+        response_data = {
+            "user": {
+                "first_name": instance.user.first_name,
+                "last_name": instance.user.last_name,
+                "constituency": instance.user.constituency,
+                "is_mla": instance.user.is_mla,
+            },
+            "pilgrim": {
+                "pilgrim_name": instance.pilgrim_name,
+                "seva": instance.seva,
+                "booked_date": instance.booked_datetime,
+                "aadhar_number": (
+                    '*' * (len(instance.aadhaar_number) - 4) + instance.aadhaar_number[-4:]
+                    if instance.aadhaar_number else None
+                ),
+            },
+        }
+        
+        return Response(response_data)

@@ -99,7 +99,7 @@ from django.shortcuts import render
 
 def generate_qr_code(request, hash_key):
     # The URL or data you want to encode in the QR code
-    data = f"{request.build_absolute_uri('/')}api/users/qr-verify/{hash_key}/"
+    data = f"{request.build_absolute_uri('/')}view/verify-qr/{hash_key}/"
 
     # Generate the QR code
     qr = qrcode.QRCode(
