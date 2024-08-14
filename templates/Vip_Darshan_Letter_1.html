@@ -52,7 +52,7 @@
       .signature {
         margin-top: 80px;
       }
-
+     
 
     </style>
   </head>
@@ -107,6 +107,12 @@
       <p class="signature">Yours Sincerely,</p>
       <p class="bold"></p>
       <p class="bold">({{ user }})</p>
+      <div style="text-align: right;">
+        <div >
+          <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code" style="display: block; margin: 0 auto; padding: 0; width: 100px; height: 100px;" />
+          <p style="margin-top: 10px;">Use this QR to verify authority</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>

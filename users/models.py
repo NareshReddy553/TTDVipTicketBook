@@ -21,6 +21,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     constituency = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(max_length=5, blank=True, null=True)
     
+    
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
@@ -46,6 +47,7 @@ class Pilgrim(models.Model):
     gender = models.CharField(max_length=5, blank=True, null=True)
     seva = models.CharField(max_length=100, blank=True, null=True)
     is_master=models.BooleanField(default=True,blank=True, null=True)
+    hash_key = models.CharField(max_length=64, unique=True, blank=True)
 
     class Meta:
         managed=False

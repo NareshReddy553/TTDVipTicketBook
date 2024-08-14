@@ -1,7 +1,7 @@
 from io import BytesIO
 from datetime import datetime
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -11,13 +11,18 @@ from config import settings
 
 from users.models import Pilgrim, UserProfile
 from users.serializer import  PasswordResetSerializer, UsersProfileSerializer
-from users.utils import get_weekend_dates_for_month, get_weekend_dates_for_year, link_callback, render_to_pdf
+from users.utils import generate_qr_code, get_weekend_dates_for_month, get_weekend_dates_for_year, link_callback, render_to_pdf
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 import os
 from django.template.loader import get_template
 from rest_framework import permissions, status
 from rest_framework_simplejwt.tokens import RefreshToken
+import qrcode
+from io import BytesIO
+from django.http import HttpResponse
+from rest_framework.views import APIView
+from django.urls import reverse
 
 class CustomTokenObtainPairView(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -105,13 +110,17 @@ def generate_vip_darshan_letter(request):
     pilgrim_data=data.get("pilgrims")
     accommodation_date = datetime.strptime(data.get('accommodation_date'), "%Y-%m-%d").date() if data.get('accommodation_date') else None
     darshan_date = datetime.strptime(data.get('darshan_date'), "%Y-%m-%d").date() if data.get('darshan_date') else None
+    instance=get_object_or_404(Pilgrim,booked_datetime__date=data.get('darshan_date'),is_master=True,user=request.user)
     context = {
         'current_date': datetime.now().strftime("%d.%m.%Y"),
         'pilgrims': pilgrim_data,
         'accommodation_date':accommodation_date.strftime("%d.%m.%Y"),
         'darshan_date':darshan_date.strftime("%d.%m.%Y"),
         'user':request.user.first_name +" "+request.user.last_name,
-        'pilgrims_count':request.data.get("pilgrim_count",1)-1
+        'pilgrims_count':request.data.get("pilgrim_count",1)-1,
+        'qr_code_url': request.build_absolute_uri(reverse('generate_qr_code', kwargs={'hash_key': instance.hash_key})),
+        'hash_key': instance.hash_key,
+        'qr_code':generate_qr_code(request, instance.hash_key)
     }
     if isinstance(pilgrim_data,list):
         if len(pilgrim_data) > 1:
@@ -135,3 +144,27 @@ def generate_vip_darshan_letter(request):
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+
+
+class GenerateQRCodeView(APIView):
+
+    def get(self, request, hash_key):
+        instance = get_object_or_404(Pilgrim, hash_key=hash_key,is_master=True)
+        url_with_hash_key = f"{request.build_absolute_uri('/')}api/users/qr-verify/{hash_key}/"
+        
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=4,
+            border=1,
+        )
+        qr.add_data(url_with_hash_key)
+        qr.make(fit=True)
+
+        img = qr.make_image(fill='black', back_color='white')
+        buffer = BytesIO()
+        img.save(buffer)
+        buffer.seek(0)
+
+        return HttpResponse(buffer.getvalue(), content_type="image/png")

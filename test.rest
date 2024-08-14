@@ -215,11 +215,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 POST http://127.0.0.1:8000/api/users/vip-darshan-letter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDEyMDg1LCJpYXQiOjE3MjI0MDQ4ODUsImp0aSI6IjlmNjE1Y2U2NzFiZTRlZDE5M2FjOTQ1Y2NlOTYwYTM3IiwidXNlcl9pZCI6MjF9.NLkfe1CzxNrgqRod7Rn2xiOa2ecgNlw0q6zKPHDgps4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjExMjE2LCJpYXQiOjE3MjM2MDQwMTYsImp0aSI6ImUwMzZlMGNiMDI1NTQ5MGY4YWI2MTE2NTVmYjlmZDdjIiwidXNlcl9pZCI6MjF9.HHr1lrGFOlc0MWV2TEt9hlfFPLBA8YzxP6tl5YMxR_U
 
 {
         "pilgrims": [{"pilgrim_name":"Naresh","phone_number":1234567890,"aadhaar_number":123456789012,"age":22}],
         "accommodation_date":"2012-04-23",
-        "darshan_date":"2012-04-23",
+        "darshan_date":"2024-08-24",
         "pilgrims_count":4
 }
+
+###
+
+GET http://127.0.0.1:8000/api/users/qr-verify/4be35aa61cb540e7930c50cf148aa381/
+# content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDEyMDg1LCJpYXQiOjE3MjI0MDQ4ODUsImp0aSI6IjlmNjE1Y2U2NzFiZTRlZDE5M2FjOTQ1Y2NlOTYwYTM3IiwidXNlcl9pZCI6MjF9.NLkfe1CzxNrgqRod7Rn2xiOa2ecgNlw0q6zKPHDgps4
+
+# {
+#         "pilgrims": [{"pilgrim_name":"Naresh","phone_number":1234567890,"aadhaar_number":123456789012,"age":22}],
+#         "accommodation_date":"2012-04-23",
+#         "darshan_date":"2012-04-23",
+#         "pilgrims_count":4
+# }

@@ -90,3 +90,32 @@ from datetime import datetime
 def get_date_from_string(date_string, date_format="%Y-%m-%d %H:%M:%S"):
     parsed_datetime = datetime.strptime(date_string, date_format)
     return parsed_datetime.date()
+
+
+import qrcode
+import base64
+from io import BytesIO
+from django.shortcuts import render
+
+def generate_qr_code(request, hash_key):
+    # The URL or data you want to encode in the QR code
+    data = f"{request.build_absolute_uri('/')}api/users/qr-verify/{hash_key}/"
+
+    # Generate the QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=1,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    # Create an image from the QR code instance
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Convert the image to a BytesIO object
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    return img_str

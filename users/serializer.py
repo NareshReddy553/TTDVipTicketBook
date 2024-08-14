@@ -1,5 +1,6 @@
 from datetime import datetime,date
 from rest_framework import serializers
+import uuid
 
 from config.settings import MLA_QUOTA_BOOK_FOR_DAY,MP_QUOTA_BOOK_FOR_DAY
 from users.models import Blockdate, Pilgrim, UserProfile,PilgrimStats
@@ -63,7 +64,8 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
 
     def create(self, validated_data):
         user = self.context['request'].user
-        pilgrims = [Pilgrim(**item, user=user) for item in validated_data]
+        hash_key = uuid.uuid4().hex
+        pilgrims = [Pilgrim(**item, user=user,hash_key=hash_key) for item in validated_data]
         created_pilgrims = Pilgrim.objects.bulk_create(pilgrims)
 
         total_pilgrim_count=int(self.context['request'].data.get('pilgrim_count'))
