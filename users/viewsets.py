@@ -203,6 +203,7 @@ class BlockDateViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+        
     @transaction.atomic
     def create(self, request, *args, **kwargs):
         serializer = BlockdateSerializer(data=request.data,context={'request':request})
@@ -210,8 +211,8 @@ class BlockDateViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save()
         
-        except Exception  as e :
-                return Response({"error": e}, status=status.HTTP_400_BAD_REQUEST)    
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)    
         return Response(status=status.HTTP_201_CREATED)
     
     @transaction.atomic

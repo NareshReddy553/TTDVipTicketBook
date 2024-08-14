@@ -174,11 +174,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/blockdates/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTM2ODcyLCJpYXQiOjE3MjM1Mjk2NzIsImp0aSI6ImExNWM5ZGVmMzE5MTQ4NjBhZWRhNDI4NDRjMDQzZTRmIiwidXNlcl9pZCI6MjF9.pbQ7fIhx9XuzyTQdokSV8_KB2aG_1R4bJ_U2zPSahZc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjI3NjQzLCJpYXQiOjE3MjM2MjA0NDMsImp0aSI6Ijc2ZWZjODhjMWE5YjQ3MTY5ZjRmY2VmNmVlNjM0OGM4IiwidXNlcl9pZCI6MjF9.kSa5HeRiFvhTri1-jg8pP3LChh6NtcstGoWuknaKaKI
 
 #payload
 {
-  "dates": ["2024-08-15", "2024-08-16"]
+  "dates":["2024-09-25","2024-09-26"]
 }
 
 ###  Unblock dates
