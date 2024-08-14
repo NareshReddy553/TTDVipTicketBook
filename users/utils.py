@@ -95,11 +95,13 @@ def get_date_from_string(date_string, date_format="%Y-%m-%d %H:%M:%S"):
 import qrcode
 import base64
 from io import BytesIO
-from django.shortcuts import render
+from urllib.parse import urlsplit, urlunsplit
 
 def generate_qr_code(request, hash_key):
-    # The URL or data you want to encode in the QR code
-    data = f"{request.build_absolute_uri('/')}view/verify-qr/{hash_key}/"
+    scheme = request.scheme
+    netloc = request.get_host().split(':')[0]
+    frontend_path = f"/view/verify-qr/{hash_key}/"
+    frontend_url = urlunsplit((scheme, netloc, frontend_path, '', ''))
 
     # Generate the QR code
     qr = qrcode.QRCode(
@@ -108,7 +110,7 @@ def generate_qr_code(request, hash_key):
         box_size=10,
         border=1,
     )
-    qr.add_data(data)
+    qr.add_data(frontend_url)
     qr.make(fit=True)
 
     # Create an image from the QR code instance

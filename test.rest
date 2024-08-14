@@ -215,7 +215,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 POST http://127.0.0.1:8000/api/users/vip-darshan-letter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjExMjE2LCJpYXQiOjE3MjM2MDQwMTYsImp0aSI6ImUwMzZlMGNiMDI1NTQ5MGY4YWI2MTE2NTVmYjlmZDdjIiwidXNlcl9pZCI6MjF9.HHr1lrGFOlc0MWV2TEt9hlfFPLBA8YzxP6tl5YMxR_U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjIzMzg3LCJpYXQiOjE3MjM2MTYxODcsImp0aSI6IjlkMGE0ODFhNDhiOTRkZmQ4NTM5YTI4ZTczZTllODE1IiwidXNlcl9pZCI6MjF9.Y1RoeNduJjmL-Q6zVMZFU916uOatwmXb7RBvIlLXBH0
 
 {
         "pilgrims": [{"pilgrim_name":"Naresh","phone_number":1234567890,"aadhaar_number":123456789012,"age":22}],
