@@ -159,7 +159,7 @@ class GenerateQRCodeView(APIView):
                 "constituency": instance.user.constituency,
                 "is_mla": instance.user.is_mla,
             },
-            "pilgrim": {
+            "pilgrim": [{
                 "pilgrim_name": instance.pilgrim_name,
                 "seva": instance.seva,
                 "booked_date": instance.booked_datetime,
@@ -167,7 +167,7 @@ class GenerateQRCodeView(APIView):
                     '*' * (len(instance.aadhaar_number) - 4) + instance.aadhaar_number[-4:]
                     if instance.aadhaar_number else None
                 ),
-            },
+            }],
         }
         
         return Response(response_data)
