@@ -139,19 +139,30 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
     
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        booked_date = instance.booked_datetime        
+        instance = self.get_object()  # Retrieve the object to be deleted
+        booked_date = instance.booked_datetime
+
+        # Perform the deletion of the instance
         self.perform_destroy(instance)
-        pilgrimstanst=PilgrimStats.objects.filter(user=instance.user,booked_datetime=booked_date.date()).delete()
-        # other_pilgrims=Pilgrim.objects.filter(user=request.user,booked_datetime=booked_date)
-        # if other_pilgrims:
-        #     if pilgrimstanst:
-        #         pilgrimstanst.pilgrim_count =other_pilgrims.count()
-                
-        # else:
-        #     pilgrimstanst.pilgrim_count =0
-            
-        # pilgrimstanst.save()
+
+        # Check if there is a PilgrimStats entry for the user on the booked date
+        pilgrim_stats = PilgrimStats.objects.filter(user=instance.user, booked_datetime=booked_date.date()).first()
+
+        # Get other pilgrims booked at the same time and ordered by datetime
+        other_pilgrims = Pilgrim.objects.filter(user=request.user, booked_datetime=booked_date).order_by("booked_datetime")
+
+        if other_pilgrims.exists():  # Check if there are other pilgrims for this user
+            next_master_pilgrim = other_pilgrims.first()  # Get the first pilgrim to become the new master
+            next_master_pilgrim.is_master = True  # Set as the new master
+            next_master_pilgrim.save()
+
+            if pilgrim_stats:
+                pilgrim_stats.pilgrim_count = other_pilgrims.count()  # Update the pilgrim count
+                pilgrim_stats.save()
+        else:
+            if pilgrim_stats:
+                pilgrim_stats.delete()  # Delete the stats if no other pilgrims exist
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):
