@@ -2,13 +2,14 @@ from django.urls import include, path
 from rest_framework import routers
 
 from users.views import GenerateQRCodeView, PasswordResetView, UserProfileView, generate_vip_darshan_letter
-from users.viewsets import BlockDateViewSet, PilgrimStatsViewSet, PilgrimsViewSet, UserProfileViewSet
+from users.viewsets import BlockDateViewSet, PilgrimStatsViewSet, PilgrimsViewSet, UserPilgrimStatsViewSet, UserProfileViewSet
 
 router = routers.SimpleRouter()
 router.register(r'usersProfile', UserProfileViewSet)
 router.register(r'pilgrims', PilgrimsViewSet)
 router.register(r'pilgrimstats', PilgrimStatsViewSet)
 router.register(r'blockdates',BlockDateViewSet)
+router.register(r'userstats', UserPilgrimStatsViewSet, basename='userpilgrimstats') 
 
 
 urlpatterns = [

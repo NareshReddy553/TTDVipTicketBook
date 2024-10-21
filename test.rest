@@ -236,3 +236,8 @@ GET http://13.201.33.169:8000/api/users/qr-verify/4be35aa61cb540e7930c50cf148aa3
 #         "darshan_date":"2012-04-23",
 #         "pilgrims_count":4
 # }
+
+###
+GET http://localhost:8000/api/users/userstats/?month=10&page=2&year=2024
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NTE5Njc5LCJpYXQiOjE3Mjk1MTI0NzksImp0aSI6ImQyZTJlYmZkZWM2OTQwNTQ5ZGM0YTA3NTEwNjFmOTJmIiwidXNlcl9pZCI6MjF9.30r4c6TsSNuQ7KM5xumxOElGKl4d8Dna9F9a1WkVl10

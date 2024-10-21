@@ -164,3 +164,35 @@ class PasswordResetSerializer(serializers.Serializer):
         user.set_password(self.validated_data['new_password'])
         user.save()
         return user
+    
+    
+from rest_framework import serializers
+from users.models import UserProfile, Pilgrim, Blockdate
+
+class BlockdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blockdate
+        fields = ['blockdate']
+
+class PilgrimSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pilgrim
+        fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','created_datetime', 'booked_datetime']
+
+class UserPilgrimStatsSerializer(serializers.ModelSerializer):
+    pilgrims = serializers.SerializerMethodField()
+    blocked_dates = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserProfile
+        fields = [ 'username', 'first_name','constituency', 'pilgrims', 'blocked_dates']
+
+    def get_pilgrims(self, obj):
+        # Get pilgrims for the user
+        pilgrims = Pilgrim.objects.filter(user=obj)
+        return PilgrimSerializer(pilgrims, many=True).data
+
+    def get_blocked_dates(self, obj):
+        # Get blocked dates for the user
+        blocked_dates = Blockdate.objects.filter(user=obj).values_list('blockdate', flat=True)
+        return list(blocked_dates)

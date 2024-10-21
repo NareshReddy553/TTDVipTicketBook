@@ -24,7 +24,8 @@ from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import PilgrimFilter, PilgrimStatsFilter
 from users.models import Blockdate, Pilgrim, PilgrimStats, UserProfile
-from users.serializer import  BlockdateSerializer, BlockedDateSerializer, PilgrimSerializer, PilgrimstatsSerializer, UsersSerializer
+from users.serializer import  BlockdateSerializer, BlockedDateSerializer, PilgrimSerializer, PilgrimstatsSerializer, UserPilgrimStatsSerializer, UsersSerializer
+from rest_framework.pagination import PageNumberPagination
 
 
 logger = logging.getLogger("tfn.views")
@@ -235,3 +236,70 @@ class BlockDateViewSet(viewsets.ModelViewSet):
             Blockdate.objects.filter(user=request.user, blockdate__in=dates).delete()
             return Response({"status": "Dates unblocked."}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UserPilgrimStatsPagination(PageNumberPagination):
+    page_size = 10  # Default page size
+    page_size_query_param = 'page_size'  # Allow clients to set the page size
+    max_page_size = 100  # Maximum page size
+
+class UserPilgrimStatsViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    pagination_class = UserPilgrimStatsPagination
+    serializer_class = UserPilgrimStatsSerializer
+
+    # Define a default queryset
+    queryset = UserProfile.objects.all()  # Default queryset for the viewset
+
+    def get_queryset(self):
+        # Check if the user is an admin
+        is_admin = self.request.user.is_superuser
+
+        if is_admin:
+            return UserProfile.objects.all()
+        else:
+            return UserProfile.objects.filter(id=self.request.user.id)
+
+    def list(self, request, *args, **kwargs):
+        # Get the current year and month from the request parameters
+        year = request.query_params.get('year')
+        month = request.query_params.get('month')
+
+        # Get the queryset based on user role
+        queryset = self.get_queryset()
+
+        # Apply pagination
+        page = self.paginate_queryset(queryset)
+        is_admin = self.request.user.is_superuser
+        if page is not None:
+            response_data = []
+            for user in page:
+                if is_admin:
+                   pilgrims = Pilgrim.objects.filter( booked_datetime__year=int(year), booked_datetime__month=int(month)) 
+                else:
+                    # Get pilgrims for the user filtered by year and month
+                    pilgrims = Pilgrim.objects.filter(user=user, booked_datetime__year=int(year), booked_datetime__month=int(month))
+                pilgrim_count = pilgrims.count()
+
+                # Create a response object using the serializer
+                user_data = UserPilgrimStatsSerializer(user).data
+                user_data['pilgrim_count'] = pilgrim_count
+                user_data['pilgrims'] = PilgrimSerializer(pilgrims, many=True).data
+
+                response_data.append(user_data)
+
+            # Return paginated response with total count
+            return self.get_paginated_response(response_data)
+
+        # If no pagination is applied, return all data
+        response_data = []
+        for user in queryset:
+            pilgrims = Pilgrim.objects.filter(user=user, booked_datetime__year=int(year), booked_datetime__month=int(month))
+            pilgrim_count = pilgrims.count()
+
+            user_data = UserPilgrimStatsSerializer(user).data
+            user_data['pilgrim_count'] = pilgrim_count
+            user_data['pilgrims'] = PilgrimSerializer(pilgrims, many=True).data
+
+            response_data.append(user_data)
+
+        return Response(response_data)
