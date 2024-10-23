@@ -180,19 +180,7 @@ class PilgrimSerializer(serializers.ModelSerializer):
         fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','created_datetime', 'booked_datetime']
 
 class UserPilgrimStatsSerializer(serializers.ModelSerializer):
-    pilgrims = serializers.SerializerMethodField()
-    blocked_dates = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
-        fields = [ 'username', 'first_name','constituency', 'pilgrims', 'blocked_dates']
-
-    def get_pilgrims(self, obj):
-        # Get pilgrims for the user
-        pilgrims = Pilgrim.objects.filter(user=obj)
-        return PilgrimSerializer(pilgrims, many=True).data
-
-    def get_blocked_dates(self, obj):
-        # Get blocked dates for the user
-        blocked_dates = Blockdate.objects.filter(user=obj).values_list('blockdate', flat=True)
-        return list(blocked_dates)
+        fields = [ 'user_id','username', 'first_name','constituency','email','is_mla','last_name','phone_number','gender']

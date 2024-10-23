@@ -257,49 +257,50 @@ class UserPilgrimStatsViewSet(viewsets.ModelViewSet):
         if is_admin:
             return UserProfile.objects.all()
         else:
-            return UserProfile.objects.filter(id=self.request.user.id)
+            return UserProfile.objects.filter(id=self.request.user.user_id)
 
-    def list(self, request, *args, **kwargs):
-        # Get the current year and month from the request parameters
-        year = request.query_params.get('year')
-        month = request.query_params.get('month')
+    @action(detail=False, methods=['get'], url_path='users')
+    def list_users(self, request, *args, **kwargs):
+        user_data = UserPilgrimStatsSerializer(request.user).data
+        return Response(user_data)
+        # If the user is an admin, return the list of users
+        if request.user.is_superuser:
+            queryset = self.get_queryset()
+            response_data = UserPilgrimStatsSerializer(queryset, many=True).data
+            return Response(response_data)
+        else:
+            # If the user is not an admin, return their own details
+            user_data = UserPilgrimStatsSerializer(request.user).data
+            return Response(user_data)
 
-        # Get the queryset based on user role
-        queryset = self.get_queryset()
+    @action(detail=False, methods=['get'], url_path='pilgrims')
+    def list_pilgrims(self, request, *args, **kwargs):
+        # Get current year and month
+        current_year = datetime.now().year
+        current_month = datetime.now().month
+
+        # Get year and month from query params or use current values
+        year = request.query_params.get('year', current_year)
+        month = request.query_params.get('month', current_month)
+
+        if request.user.is_superuser:
+            # If the user is a superuser, get the user ID from the query parameters
+            user_id = request.query_params.get('user_id')
+            if user_id is None:
+                return Response({"detail": "User ID is required for superuser to view pilgrim details."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Get the pilgrims for the specified user
+            pilgrims = Pilgrim.objects.filter(user_id=user_id, booked_datetime__year=int(year), booked_datetime__month=int(month))
+        else:
+            # If the user is not an admin, return their pilgrims
+            pilgrims = Pilgrim.objects.filter(user=request.user, booked_datetime__year=int(year), booked_datetime__month=int(month))
 
         # Apply pagination
-        page = self.paginate_queryset(queryset)
-        is_admin = self.request.user.is_superuser
+        page = self.paginate_queryset(pilgrims)
         if page is not None:
-            response_data = []
-            for user in page:
-                if is_admin:
-                   pilgrims = Pilgrim.objects.filter( booked_datetime__year=int(year), booked_datetime__month=int(month)) 
-                else:
-                    # Get pilgrims for the user filtered by year and month
-                    pilgrims = Pilgrim.objects.filter(user=user, booked_datetime__year=int(year), booked_datetime__month=int(month))
-                pilgrim_count = pilgrims.count()
-
-                # Create a response object using the serializer
-                user_data = UserPilgrimStatsSerializer(user).data
-                user_data['pilgrim_count'] = pilgrim_count
-                user_data['pilgrims'] = PilgrimSerializer(pilgrims, many=True).data
-
-                response_data.append(user_data)
-
-            # Return paginated response with total count
-            return self.get_paginated_response(response_data)
+            serializer = PilgrimSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
 
         # If no pagination is applied, return all data
-        response_data = []
-        for user in queryset:
-            pilgrims = Pilgrim.objects.filter(user=user, booked_datetime__year=int(year), booked_datetime__month=int(month))
-            pilgrim_count = pilgrims.count()
-
-            user_data = UserPilgrimStatsSerializer(user).data
-            user_data['pilgrim_count'] = pilgrim_count
-            user_data['pilgrims'] = PilgrimSerializer(pilgrims, many=True).data
-
-            response_data.append(user_data)
-
-        return Response(response_data)
+        serializer = PilgrimSerializer(pilgrims, many=True)
+        return Response(serializer.data)

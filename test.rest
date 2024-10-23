@@ -238,6 +238,6 @@ GET http://13.201.33.169:8000/api/users/qr-verify/4be35aa61cb540e7930c50cf148aa3
 # }
 
 ###
-GET http://localhost:8000/api/users/userstats/?month=10&page=2&year=2024
+GET http://localhost:8000/api/users/userstats/pilgrims/?month=10&&year=2024&&user_id=21
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NTE5Njc5LCJpYXQiOjE3Mjk1MTI0NzksImp0aSI6ImQyZTJlYmZkZWM2OTQwNTQ5ZGM0YTA3NTEwNjFmOTJmIiwidXNlcl9pZCI6MjF9.30r4c6TsSNuQ7KM5xumxOElGKl4d8Dna9F9a1WkVl10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NjgxNTI4LCJpYXQiOjE3Mjk2NzQzMjgsImp0aSI6ImMzMjdiOTBjMDI0YTRkYjJhNmFhMWM4ZThhNTMzOWNhIiwidXNlcl9pZCI6MjF9.Wo614P56B_NkCfuR83hVP6Jyo16OpUiwmOf79CqZDyA
