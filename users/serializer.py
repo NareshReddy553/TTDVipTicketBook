@@ -169,15 +169,8 @@ class PasswordResetSerializer(serializers.Serializer):
 from rest_framework import serializers
 from users.models import UserProfile, Pilgrim, Blockdate
 
-class BlockdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Blockdate
-        fields = ['blockdate']
 
-# class PilgrimSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Pilgrim
-#         fields = ['pilgrim_id','pilgrim_name','phone_number','aadhaar_number','created_datetime', 'booked_datetime']
+
 
 class UserPilgrimStatsSerializer(serializers.ModelSerializer):
 

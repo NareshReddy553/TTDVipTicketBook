@@ -189,7 +189,7 @@ class PilgrimStatsViewSet(viewsets.ModelViewSet):
 
 class BlockDateViewSet(viewsets.ModelViewSet):
     queryset = Blockdate.objects.all()
-    serializer_class = BlockedDateSerializer
+    serializer_class = BlockdateSerializer
     # filter_backends = [DjangoFilterBackend]
     # filterset_class = PilgrimStatsFilter
     
