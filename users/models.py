@@ -48,6 +48,7 @@ class Pilgrim(models.Model):
     seva = models.CharField(max_length=100, blank=True, null=True)
     is_master=models.BooleanField(default=True,blank=True, null=True)
     hash_key = models.CharField(max_length=64, unique=True, blank=True)
+    pilgrim_reference=models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed=False
