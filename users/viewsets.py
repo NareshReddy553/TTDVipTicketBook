@@ -99,6 +99,7 @@ class PilgrimsViewSet(viewsets.ModelViewSet):
         try:
             with transaction.atomic():
                 for item in data:
+                    item.pop('hash_key', None) 
                     instance = self.get_object_from_data(item)  # Get the instance to be updated
                     serializer = self.get_serializer(instance, data=item, partial=True)
                     serializer.is_valid(raise_exception=True)

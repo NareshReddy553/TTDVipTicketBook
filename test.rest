@@ -54,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/users/pilgrims/
 content-type: application/json
-Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDEwMTEwLCJpYXQiOjE3MjI0MDI5MTAsImp0aSI6ImQxMDIwZTY4NjQ4OTRiNjQ4YmQ2OGMxYzBlNDkyZGY0IiwidXNlcl9pZCI6MjF9.MH0TeRhrx4uMoGSrjy9v_rTJSxt-5QOFokpi34P6tg4
+Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMTg0NjMxLCJpYXQiOjE3MzAxNzc0MzEsImp0aSI6IjgyOGE2YzA1NzIyYTRmMWU5OGQ0ZjVkNjI4ZjUwZWRjIiwidXNlcl9pZCI6MjF9.VycjsCqPGa3y9VFtYL_sfMy6807M1288lunzslIElBo
 
 # [
 #     {
@@ -70,84 +70,40 @@ Authorization: Bearer   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjo
 # ]
 
 {
-   "pilgrims":[
-      {
-         "booked_datetime":"2024-07-31",
-         "seva":"VIP Break",
-         "aadhaar_number":232323671023,
-         "phone_number":1212121212,
-         "age":56,
-         "pilgrim_name":"TestUser1",
-         "is_master":true
-      }
-   ],
-   "pilgrim_count":1,
-   "booked_datetime":"2024-07-31"
+    "pilgrims": [
+        {
+            "booked_datetime": "2024-11-04",
+            "seva": "VIP Break",
+            "aadhaar_number": 789456131234,
+            "phone_number": 1234567891,
+            "age": 25,
+            "pilgrim_name": "abc",
+            "is_master": true
+        },
+        {
+            "booked_datetime": "2024-11-04",
+            "seva": "VIP Break",
+            "aadhaar_number": 368574152565,
+            "phone_number": 1234567891,
+            "age": 25,
+            "pilgrim_name": "pavan",
+            "is_master": false
+        }
+    ],
+    "pilgrim_count": "2",
+    "booked_datetime": "2024-11-04",
+    "pilgrim_reference": "test100"
 }
+
 
 
 
 ###
 Patch http://127.0.0.1:8000/api/users/pilgrims/pilgrim_update/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTM2ODcyLCJpYXQiOjE3MjM1Mjk2NzIsImp0aSI6ImExNWM5ZGVmMzE5MTQ4NjBhZWRhNDI4NDRjMDQzZTRmIiwidXNlcl9pZCI6MjF9.pbQ7fIhx9XuzyTQdokSV8_KB2aG_1R4bJ_U2zPSahZc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMTg0NjMxLCJpYXQiOjE3MzAxNzc0MzEsImp0aSI6IjgyOGE2YzA1NzIyYTRmMWU5OGQ0ZjVkNjI4ZjUwZWRjIiwidXNlcl9pZCI6MjF9.VycjsCqPGa3y9VFtYL_sfMy6807M1288lunzslIElBo
 
-[
-  {
-    "0": {
-      "booked_datetime": "2024-08-17T00:00:00Z",
-      "seva": "VIP Break",
-      "aadhaar_number": 232323671023,
-      "phone_number": 1212121212,
-      "age": 34,
-      "pilgrim_name": "TestUser1_edit_21",
-      "pilgrim_id": 239,
-      "created_datetime": "2024-08-13T05:20:19Z",
-      "modified_datetime": "2024-08-13T05:24:58Z",
-      "gender": null,
-      "is_master": true,
-      "user": 21,
-      "editable": false,
-      "clicked": true,
-      "id": "5ee91a8b-ec21-4069-a413-0a65de9bb515"
-    },
-    "1": {
-      "booked_datetime": "2024-08-17T00:00:00Z",
-      "seva": "VIP Break",
-      "aadhaar_number": 125200901823,
-      "phone_number": 1212121212,
-      "age": 34,
-      "pilgrim_name": "TestUser2_edit",
-      "pilgrim_id": 240,
-      "created_datetime": "2024-08-13T05:20:19Z",
-      "modified_datetime": "2024-08-13T05:22:13Z",
-      "gender": null,
-      "is_master": false,
-      "user": 21,
-      "editable": false,
-      "clicked": true,
-      "id": "9d3f06a4-de8f-4e45-a730-4f83da61f011"
-    },
-    "2": {
-      "booked_datetime": "2024-08-17T00:00:00Z",
-      "seva": "VIP Break",
-      "aadhaar_number": 128911289034,
-      "phone_number": 1212121212,
-      "age": 34,
-      "pilgrim_name": "TestUser3_edit",
-      "pilgrim_id": 241,
-      "created_datetime": "2024-08-13T05:20:19Z",
-      "modified_datetime": "2024-08-13T05:20:19Z",
-      "gender": null,
-      "is_master": false,
-      "user": 21,
-      "editable": false,
-      "clicked": true,
-      "id": "ccd0ae7e-52c4-49de-935e-a1c72d60c174"
-    },
-    "pilgrim_count": 3
-  }
-]
+[{"booked_datetime":"2024-11-01T00:00:00Z","seva":"VIP Break","aadhaar_number":123412789012,"phone_number":1234567833,"age":23,"pilgrim_name":"Naresh1","pilgrim_id":74,"created_datetime":"2024-10-29T05:02:43Z","modified_datetime":"2024-10-29T05:02:43Z","gender":null,"is_master":true,"hash_key":"b8376b98ed0544e096ad5e8de3ee3939","pilgrim_reference": "test12","user":21,"editable":false,"clicked":true,"id":"bced1c73-2482-4091-a0f1-8b96895f6016","pilgrim_count":2}]
 
 
 ### Api to get the pilgrim
@@ -240,4 +196,4 @@ GET http://13.201.33.169:8000/api/users/qr-verify/4be35aa61cb540e7930c50cf148aa3
 ###
 GET http://localhost:8000/api/users/userstats/pilgrims/?month=10&&year=2024&&user_id=21
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5ODQyNTk5LCJpYXQiOjE3Mjk4MzUzOTksImp0aSI6ImQ0MTA0M2E0ZjI0NjRhM2ZiYmQ3M2M5YWY4NmJjM2U4IiwidXNlcl9pZCI6MjF9.k1j5twSCDxvhDaF1VkeQHugDUiM-mwYC7vjxi3FMCJY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5ODQyNTk5LCJpYXQiOjE3Mjk4MzUzOTksImp0aSI6ImQ0MTA0M2E0ZjI0NjRhM2ZiYmQ3M2M5YWY4NmJjM2U4IiwidXNlcl9pZCI6MjF9.k1j5twSCDxvhDaF1VkeQHugDUiM-mwYC7vjxi3FMCJYeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMTg0NjMxLCJpYXQiOjE3MzAxNzc0MzEsImp0aSI6IjgyOGE2YzA1NzIyYTRmMWU5OGQ0ZjVkNjI4ZjUwZWRjIiwidXNlcl9pZCI6MjF9.VycjsCqPGa3y9VFtYL_sfMy6807M1288lunzslIElBo

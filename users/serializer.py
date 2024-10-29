@@ -65,7 +65,8 @@ class BulkPilgrimsSerializer(serializers.ListSerializer):
     def create(self, validated_data):
         user = self.context['request'].user
         hash_key = uuid.uuid4().hex
-        pilgrims = [Pilgrim(**item, user=user,hash_key=hash_key) for item in validated_data]
+        pilgrim_reference=self.context['request'].data.get('pilgrim_reference',None)
+        pilgrims = [Pilgrim(**item, user=user,hash_key=hash_key,pilgrim_reference=pilgrim_reference) for item in validated_data]
         created_pilgrims = Pilgrim.objects.bulk_create(pilgrims)
 
         total_pilgrim_count=int(self.context['request'].data.get('pilgrim_count'))
